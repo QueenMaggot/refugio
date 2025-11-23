@@ -2,7 +2,7 @@
  
 {% extends 'base.html' %}
 {% block contenedor %}
-
+{% load static %}
 
 <div class= "form-style-3">
     <h2 class="titulo-grid" > Modificar Refugio </h2>
@@ -27,8 +27,12 @@
         </div>
 
     <div>
-        <a class="btn btn-primary" href="{% url 'refugios:refugio_list' %}" class="card-link">Volver al Listado</a>
-        <button type="submit" class="btn btn-success">Guardar</button>
+        <a class="btn btn-primary" href="{% url 'refugios:refugio_list' %}" class="card-link">Volver al Listado
+            <img src ="{% static 'img/gato-azul.png' %}"  style="height:40px">
+        </a>
+        <button type="submit" class="btn btn-success">Guardar
+            <img src ="{% static 'img/gato-neutro2.png' %}"  style="height:40px">
+        </button>
     </div>
 
     </div>

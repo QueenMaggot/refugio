@@ -86,9 +86,13 @@
             <p class="card-text">{{ animal.descripcion }}</p>
   
             <!--{% if perms.animales.view_animal%} {% endif %}-->
-            <a href="{% url 'animales:animal_detail' animal.id %}" class="btn btn-primary">Ver detalle</a>
+            <a href="{% url 'animales:animal_detail' animal.id %}" class="btn btn-primary">Ver detalle
+              <img src="{%static 'img/gato-detail.png'%}" style="height:40px">
+            </a>
             {% if perms.animales.change_animal%} 
-              <a href="{% url 'animales:animal_update' animal.id %}" class="btn btn-warning">Editar</a>
+              <a href="{% url 'animales:animal_update' animal.id %}" class="btn btn-warning">Editar
+                <img src="{%static 'img/gato-edicion.png'%}" style="height:40px">
+              </a>
             {% endif %}
             
 

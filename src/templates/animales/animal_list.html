@@ -2,7 +2,7 @@
  
 {% extends 'base.html' %}
 {% block contenedor %}
-
+{% load static %}
 <h2 class="text-center mb-4">Editar Animal</h2>
 <form method="post" enctype="multipart/form-data" class= "form-style-3">
     {% csrf_token %}
@@ -24,8 +24,12 @@
     <!-- Campo de imagen -->
     <p>{{ form.foto.label_tag }} {{ form.foto }}</p>
 
-    <a class="btn btn-primary" href="{% url 'animales:animal_list' %}" class="card-link">Volver al Listado</a>
-    <button class="btn btn-success" type="submit">Guardar cambios</button>
+    <a class="btn btn-primary" href="{% url 'animales:animal_list' %}" class="card-link">Volver al Listado
+        <img src ="{% static 'img/gato-azul.png' %}"  style="height:40px">
+    </a>
+    <button class="btn btn-success" type="submit">Guardar cambios
+        <img src ="{% static 'img/gato-neutro2.png' %}"  style="height:40px">
+    </button>
 </form>
 
 

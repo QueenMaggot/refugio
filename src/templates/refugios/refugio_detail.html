@@ -4,7 +4,7 @@
 {% load static %}
 {% block contenedor %}
 
-<div class="form-style-3">
+<div class="form-style-3"> 
     <h2 class="d-flex justify-content-center"> Detalle del Refugio </h2> 
     <br>
     <div class="card" style="width: 22rem;">
@@ -18,9 +18,13 @@
         <div class="card-body">
             
             {% if perms.refugios.delete_refugio %}
-                <a href="{% url 'refugios:refugio_delete' refugio.pk %}" class="btn btn-danger">Eliminar Refugio</a>
+                <a href="{% url 'refugios:refugio_delete' refugio.pk %}" class="btn btn-danger">Eliminar Refugio
+                    <img src ="{% static 'img/gato-delete.png' %}"  style="height:40px">
+                </a>
             {% endif %}
-            <a class="btn btn-primary" href="{% url 'refugios:refugio_list' %}" class="card-link">Volver al Listado</a>
+            <a class="btn btn-primary" href="{% url 'refugios:refugio_list' %}" class="card-link">Volver al Listado
+                <img src ="{% static 'img/gato-azul.png' %}"  style="height:40px">
+            </a>
 
     </div>
     </div>
