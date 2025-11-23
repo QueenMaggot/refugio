@@ -2,7 +2,7 @@
 
 {% extends 'base.html' %}
 {% block contenedor %}
-
+{% load static %}
 <h2 class="d-flex justify-content-center">Solicitar Adopción</h2>
 <form method="post" class="form-style-3">
     {% csrf_token %}
@@ -28,8 +28,12 @@
     <p><strong>Fecha de solicitud:</strong> {{ today|date:"d/m/Y" }}</p>
     <p><strong>Estado:</strong> Pendiente</p>
 
-    <a href="{% url 'animales:animal_list' %}" class="btn btn-primary">Volver a Animales</a>
-    <button type="submit" class="btn btn-success">Enviar Solicitud</button>
+    <a href="{% url 'animales:animal_list' %}" class="btn btn-primary">Volver a Animales
+      <img src ="{% static 'img/gato-azul.png' %}"  style="height:40px">
+    </a>
+    <button type="submit" class="btn btn-success">Enviar Solicitud
+      <img src ="{% static 'img/gato-neutro2.png' %}"  style="height:40px">
+    </button>
 </form>
 
 {% endblock contenedor %}

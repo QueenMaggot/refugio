@@ -49,17 +49,17 @@
               <!-- Botones de acción -->
               <div class="mt-auto">
                 {% if perms.adopciones.view_adopcion %}
-                  <a href="{% url 'adopciones:adopcion_detail' adopcion.pk %}" class="btn btn-sm btn btn-primary me-1">Ver
+                  <a href="{% url 'adopciones:adopcion_detail' adopcion.pk %}" class="btn btn-sm btn-outline-primary me-1">Ver
                     <img src ="{% static 'img/gato-detail.png' %}"  style="height:40px">
                   </a>
                 {% endif %}
                 {% if perms.adopciones.change_adopcion %}
-                  <a href="{% url 'adopciones:adopcion_update' adopcion.pk %}" class="btn btn-sm btn btn-warning me-1">Editar
+                  <a href="{% url 'adopciones:adopcion_update' adopcion.pk %}" class="btn btn-sm btn-outline-warning me-1">Editar
                      <img src ="{% static 'img/gato-edicion.png' %}"  style="height:40px">
                   </a>
                 {% endif %}
                 {% if perms.adopciones.delete_adopcion %}
-                  <a href="{% url 'adopciones:adopcion_delete' adopcion.pk %}" class="btn btn-sm btn btn-danger">Eliminar
+                  <a href="{% url 'adopciones:adopcion_delete' adopcion.pk %}" class="btn btn-sm btn-outline-danger">Eliminar
                      <img src ="{% static 'img/gato-delete.png' %}"  style="height:40px">
                   </a>
                 {% endif %}
