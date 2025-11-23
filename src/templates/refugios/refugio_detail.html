@@ -1,0 +1,29 @@
+<!-- VER DETALLE REFUGIO -->
+
+{% extends 'base.html' %} 
+{% load static %}
+{% block contenedor %}
+
+<div class="form-style-3">
+    <h2 class="d-flex justify-content-center"> Detalle del Refugio </h2> 
+    <br>
+    <div class="card" style="width: 22rem;">
+
+        <ul class="list-group list-group-flush">
+            <li class="list-group-item">Nombre: {{refugio.nombre}} </li>
+            <li class="list-group-item">Domicilio: {{refugio.domicilio}} </li>
+            <li class="list-group-item">Telefono: {{refugio.telefono}} </li>
+
+        </ul>
+        <div class="card-body">
+            
+            {% if perms.refugios.delete_refugio %}
+                <a href="{% url 'refugios:refugio_delete' refugio.pk %}" class="btn btn-danger">Eliminar Refugio</a>
+            {% endif %}
+            <a class="btn btn-primary" href="{% url 'refugios:refugio_list' %}" class="card-link">Volver al Listado</a>
+
+    </div>
+    </div>
+</div>
+
+{% endblock contenedor %}

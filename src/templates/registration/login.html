@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+{%load static %}
+{% block contenedor %} 
+
+{% if form.errors %}
+    <p>Usuario y contraseña incorrectos. Por favor intente nuevamente</p>
+{% endif %}
+
+{% if next %}
+    {% if user.is_authenticated %}
+    <p>Su cuenta no tiene acceso a esta pagina. To proceed,
+    please login with an account that has access.</p>
+    {% else %}
+    <p>Por favor, inicie sesion para ver esta página.</p>
+    {% endif %}
+{% endif %}
+
+<form method="post" action="{% url 'login' %}">
+{% csrf_token %}
+<table>
+<tr>
+    <td>{{ form.username.label_tag }}</td>
+    <td>{{ form.username }}</td>
+</tr>
+<tr>
+    <td>{{ form.password.label_tag }}</td>
+    <td>{{ form.password }}</td>
+</tr>
+</table>
+</br>
+
+<button type="submit" class="btn btn-primary">
+    Iniciar Sesión
+    <img src="{% static 'img/gato-rosa2.png' %}" style="height:40px"> 
+</button>
+<input type="hidden" name="next" value="{{ next }}">
+
+</form>
+
+<!-- Botón para crear usuario -->
+<div class="mt-3 d-flex align-items-center">
+  <p class="mb-0 me-2">¿No tienes cuenta?</p>
+  <a href="{% url 'registro_adoptante' %}" class="btn btn-success">
+    Regístrate aquí 
+    <img src="{% static 'img/agregar.png' %}" style="height:40px">
+  </a>
+</div>
+
+
+{% endblock contenedor %}

@@ -1,0 +1,24 @@
+<!-- REFUGIO CONFIRMAR BORRADO -->
+ 
+{% extends 'base.html' %}
+{% load static %}
+{% block contenedor %}
+
+<div class="form-style-3">
+    <h2 class= "d-flex justify-content-center"> Confirmar Eliminación del Refugio</h2>
+
+    <div class="alert alert-danger d-flex justify-content-center" role="alert">
+    ¿Esta seguro que desea eliminar el refugio |{{refugio.nombre}}| ?
+    </div>
+
+  <form method='post'>
+      {% csrf_token %}
+      <button type="submit" class="btn btn-success"> Confirmar Borrado
+          <img src="{% static "img/activo.png" %}" width=25/>
+      </button>
+      <a class="btn btn-danger" href="{%  url 'refugios:refugio_list' %}"> Cancelar el Borrado
+        <img src="{% static "img/inactivo.png" %}" width=25/>
+      </a>
+  </form>
+</div>
+{% endblock contenedor %}

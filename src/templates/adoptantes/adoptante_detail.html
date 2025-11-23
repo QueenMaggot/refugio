@@ -1,0 +1,43 @@
+<!-- VER DETALLE DE ADOPTANTE -->
+ 
+{% extends 'base.html' %} 
+{% load static %}
+{% block contenedor %}
+
+<div class="form-style-3">
+  <h2 class="d-flex justify-content-center"> Detalle del Adoptante </h2>
+    <div class="d-flex justify-content-center">
+    <div class="card" style="width: 22rem;">    
+
+      <div class="card-body">
+        <h5 class="card-title">Nombre: {{adoptante.nombre}}, {{adoptante.apellido}}</h5>
+      </div>
+      <ul class="list-group list-group-flush">
+        <li class="list-group-item">Genero: {{adoptante.get_genero_display}}</li>
+        <li class="list-group-item">Fecha Nacimiento: {{adoptante.fecha_nacimiento}}</li>
+        <li class="list-group-item">DNI: {{adoptante.dni}} </li>
+        <li class="list-group-item">Email: {{adoptante.email}}</li>
+        <li class="list-group-item">Teléfono: {{adoptante.telefono}} </li>
+        <li class="list-group-item">Domicilio: {{adoptante.domicilio}} </li>
+
+        <li class="list-group-item">
+          Activo: {% if adoptante.activo %}
+          <img src="{% static 'img/activo.png' %}" width="20" /> {% else %}
+          <img src="{% static 'img/inactivo.png' %}" width="20" /> {% endif %}
+        </li>
+      </ul>
+      <div class="card-body">
+        <a class="btn btn-primary" href="{% url 'adoptantes:adoptante_list' %}" class="card-link">Volver al Listado
+          <img src="{%static 'img/gato-azul.png'%}" style="height:40px">
+        </a>
+        {% if perms.adoptantes.delete_adoptante %}
+          <a class="btn btn-danger" href="{% url 'adoptantes:adoptante_delete' adoptante.id %}" class="card-link">Borrar Adoptante
+            <img src="{%static 'img/gato-delete.png'%}" style="height:40px">
+          </a>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock contenedor %}

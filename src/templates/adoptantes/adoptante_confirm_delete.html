@@ -1,0 +1,25 @@
+<!-- CONFIRMAR BORRADO ADOPTANTE -->
+ 
+{% extends 'base.html' %}
+{% load static %}
+{% block contenedor %}
+
+
+<div class= "form-style-3">
+  <h2> Confirmar Eliminación del Adoptante</h2>
+
+  <div class="alert alert-danger" role="alert">
+    ¿Esta seguro que desea eliminar el adoptante |{{adoptante.nombre}}| ?
+  </div>
+
+  <form method='post'>
+      {% csrf_token %}
+      <button type="submit" class="btn btn-success"> Confirmar Borrado
+          <img src="{% static "img/activo.png" %}" width=25/>
+      </button>
+      <a class="btn btn-danger" href="{%  url 'adoptantes:adoptante_list' %}"> Cancelar el Borrado
+        <img src="{% static "img/inactivo.png" %}" width=25/>
+      </a>
+  </form>
+  {% endblock contenedor %}
+</div>

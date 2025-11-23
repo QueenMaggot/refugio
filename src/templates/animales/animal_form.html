@@ -1,0 +1,64 @@
+<!-- AGREGAR ANIMAL -->
+
+{% extends "base.html" %}
+{% load static %}
+{% block contenedor %} 
+
+<div class= "form-style-3 d-flex justify-content-center">
+  <form method="post" enctype="multipart/form-data">
+    <h2 class="titulo-grid d-flex justify-content-center"> Agregar Animal</h2><br>
+    {% csrf_token %}
+    <div class="mb-3">
+      {{form.nombre.label_tag}}
+      {{form.nombre.as_widget}}
+    </div>
+    <br>
+
+    <div class="mb-3">
+      {{form.especie.label_tag}}
+      {{form.especie.as_widget}}
+
+      <!-- Sexo -->
+    <div class="col-md-3 mb-3">
+
+     </div>
+
+     <div class="mb-3">
+            <label>Genero:</label>
+      {{ filter.form.sexo }}
+      <input type="checkbox" name="sexo" value="H"> Hembra
+      <input type="checkbox" name="sexo" value="M"> Macho
+     </div>
+
+    </div>
+    
+    <div class="mb-3">
+          {{ form.descripcion.label_tag }}
+          {{ form.descripcion.as_widget }} 
+    </div>
+
+      {{form.fecha_nacimiento.label_tag}}
+      {{form.fecha_nacimiento.as_widget}}<br>
+    <br>
+    
+    
+    <div class="mb-3">
+      {{form.refugio.label_tag}}
+      {{form.refugio.as_widget}}
+    </div>
+    <br>
+
+    <div class="mb-3">
+      {{form.foto.label_tag}}
+      {{form.foto.as_widget}}
+    </div>
+    <a class="btn btn-primary" href="{% url 'animales:animal_list' %}" class="card-link">
+      Volver al Listado <img src= "{%static 'img/gato-azul.png' %}" style="height: 40px">
+    </a>
+    <button type="submit" class="btn btn-success">Guardar
+      <img src="{%static 'img/gato-neutro2.png'%}" style="height:40px">
+    </button>
+  </form>
+</div>
+
+{% endblock contenedor%}

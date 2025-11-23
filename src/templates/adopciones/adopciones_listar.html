@@ -1,0 +1,102 @@
+<!-- LISTADO DE ADOPCIONES (versión grid/tarjetas CON FOTO) -->
+{% extends "base.html" %}
+{% load static %}
+{% block contenedor %} 
+
+<div class="container mt-4">
+  <div class="text-center mb-4">
+    <h2>Listado de Adopciones</h2>
+  </div>
+
+  {% if adopciones %}
+    <div class="row g-4">
+      {% for adopcion in adopciones %}
+        <div class="col-md-6 col-lg-4">
+          <div class="card h-100 shadow-sm">
+            <!-- Imagen del animal (si existe) -->
+            {% if adopcion.animal.foto %}
+              <img src="{{ adopcion.animal.foto.url }}" 
+                   class="card-img-top" 
+                   alt="Foto de {{ adopcion.animal.nombre }}"
+                   style="height: 200px; object-fit: cover;">
+            {% else %}
+              <div class="bg-light d-flex align-items-center justify-content-center" 
+                   style="height: 200px;">
+                <i class="fas fa-paw fa-3x text-muted"></i>
+              </div>
+            {% endif %}
+
+            <div class="card-body d-flex flex-column">
+              <!-- Información principal -->
+              <h5 class="card-title">{{ adopcion.animal.nombre }}</h5>
+              <p class="card-text flex-grow-1">
+                <strong>Especie:</strong> {{ adopcion.animal.get_especie_display }}<br>
+                <strong>Sexo:</strong> {{ adopcion.animal.get_sexo_display }}<br>
+                <strong>Refugio:</strong> {{ adopcion.animal.refugio.nombre }}<br>
+                <strong>Adoptante:</strong> {{ adopcion.adoptante }}<br>
+                <strong>Fecha:</strong> {{ adopcion.fecha_adopcion }}<br>
+                <strong>Estado:</strong> 
+                {% if adopcion.estado == 'aprobada' %}
+                  <span class="badge bg-success">Aprobada</span>
+                {% elif adopcion.estado == 'pendiente' %}
+                  <span class="badge bg-warning text-dark">Pendiente</span>
+                {% else %}
+                  <span class="badge bg-danger">Rechazada</span>
+                {% endif %}
+              </p>
+
+              <!-- Botones de acción -->
+              <div class="mt-auto">
+                {% if perms.adopciones.view_adopcion %}
+                  <a href="{% url 'adopciones:adopcion_detail' adopcion.pk %}" class="btn btn-sm btn-outline-primary me-1">Ver</a>
+                {% endif %}
+                {% if perms.adopciones.change_adopcion %}
+                  <a href="{% url 'adopciones:adopcion_update' adopcion.pk %}" class="btn btn-sm btn-outline-warning me-1">Editar</a>
+                {% endif %}
+                {% if perms.adopciones.delete_adopcion %}
+                  <a href="{% url 'adopciones:adopcion_delete' adopcion.pk %}" class="btn btn-sm btn-outline-danger">Eliminar</a>
+                {% endif %}
+              </div>
+            </div>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+
+    <!-- Paginación -->
+    {% if is_paginated %}
+      <nav aria-label="Página" class="mt-4">
+        <ul class="pagination justify-content-center">
+          {% if page_obj.has_previous %}
+            <li class="page-item">
+              <a class="page-link" href="?page=1">&laquo; Primera</a>
+            </li>
+            <li class="page-item">
+              <a class="page-link" href="?page={{ page_obj.previous_page_number }}">Anterior</a>
+            </li>
+          {% endif %}
+
+          <li class="page-item disabled">
+            <span class="page-link">Página {{ page_obj.number }} de {{ page_obj.paginator.num_pages }}</span>
+          </li>
+
+          {% if page_obj.has_next %}
+            <li class="page-item">
+              <a class="page-link" href="?page={{ page_obj.next_page_number }}">Siguiente</a>
+            </li>
+            <li class="page-item">
+              <a class="page-link" href="?page={{ page_obj.paginator.num_pages }}">Última &raquo;</a>
+            </li>
+          {% endif %}
+        </ul>
+      </nav>
+    {% endif %}
+
+  {% else %}
+    <div class="alert alert-info text-center">
+      <i class="fas fa-heart"></i> No hay adopciones registradas.
+    </div>
+  {% endif %}
+</div>
+
+{% endblock contenedor %}

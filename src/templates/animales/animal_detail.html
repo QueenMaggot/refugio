@@ -1,0 +1,60 @@
+<!-- VER DETALLE DE ANIMAL -->
+ 
+{% extends 'base.html' %} 
+{% load static %}
+{% block contenedor %}
+
+<div class="form-style-3">
+  <h2 class="d-flex justify-content-center"> Detalle del Animal </h2>
+  <div class="d-flex justify-content-center">
+    <div class="card" style="width: 22rem;">    
+      {% if animal.foto %}
+        <img src="{{ animal.foto.url }}" class="card-img-top" alt="{{ animal.nombre }}" width="150">
+      {% endif %}
+      <div class="card-body">
+        <h5 class="card-title">{{ animal.nombre }}</h5>
+      </div>
+      <ul class="list-group list-group-flush">
+        <li class="list-group-item">Especie: {{ animal.get_especie_display }}</li>
+        <li class="list-group-item">Sexo: {{ animal.get_sexo_display }}</li>
+        <li class="list-group-item">Descripción: {{ animal.descripcion }}</li>
+        <li class="list-group-item">Fecha Nacimiento: {{ animal.fecha_nacimiento }}</li>
+        <li class="list-group-item">
+          Adoptado: 
+          {% if animal.adoptado %}
+            <img src="{% static 'img/activo.png' %}" width="20" /> 
+          {% else %}
+            <img src="{% static 'img/inactivo.png' %}" width="20" /> 
+          {% endif %}
+        </li>
+        <li class="list-group-item">Refugio: {{ animal.refugio }}</li>
+      </ul>
+      <div class="card-body">
+        <!-- Botón de Listado -->
+        <a href="{% url 'animales:animal_list' %}" class="btn btn-success">Volver al Listado
+            <img src ="{% static 'img/gato-rosa2.png' %}"  style="height:40px">
+        </a>
+        
+        <!-- Botón de Adopción o Login/Registro -->
+        {% if user.is_authenticated %}
+          {% if not animal.adoptado %}
+            <a href="{% url 'adopciones:adopcion_create' animal.id %}" class="btn btn-primary">Solicitar Adopción</a>
+          {% endif %}
+        {% else %}
+          <a href="{% url 'login' %}" class="btn btn-primary">
+           Inicia Sesión para Adoptar <img src ="{% static 'img/gato-rosa.png' %}"  style="height:40px">
+          </a>
+        {% endif %}
+
+        <!-- Botón de Borrar (solo para admins) -->
+        {% if perms.animales.delete_animal %}
+          <a href="{% url 'animales:animal_delete' animal.id %}" class="btn btn-danger">Borrar Animal
+             <img src="{%static 'img/gato-delete.png'%}" style="height:40px">
+          </a>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock contenedor %}

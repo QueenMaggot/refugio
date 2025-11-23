@@ -1,0 +1,65 @@
+{% extends "base.html" %}
+{% load static %}
+{% block contenedor %}
+
+<!-- Hero principal -->
+<section class="text-center bg-light py-5">
+  <h2 class="mb-4">❤ ¡Bienvenido a Proyecto Adopciones! ❤</h2>
+  <h1 class="display-4">Adoptar es dar vida (?) </h1>
+  <p class="lead">Miles de animales esperan su hogar</p>
+  <a href="{% url 'animales:animal_list' %}" class="btn btn-success btn-lg">
+    Ver Animales Disponibles
+  </a>
+</section>
+
+<!-- Contadores -->
+<section class="container py-5">
+  <div class="row text-center">
+    <div class="col-md-4">
+      <h3 class="display-6 text-primary">{{ total_animales }}</h3>
+      <p>Animales esperando adopción</p>
+    </div>
+    <div class="col-md-4">
+      <h3 class="display-6 text-sucess">{{ total_adopciones_aprobadas }}</h3>
+      <p>Adopciones realizadas</p>
+    </div>
+    <div class="col-md-4">
+      <h3 class="display-6 text-info">{{ total_refugios }}</h3>
+      <p>Refugios participantes</p>
+    </div>
+  </div>
+</section>
+
+<!-- Carrusel dinámico -->
+<section class="container py-5">
+  <h3 class="text-center mb-4">🐾 Animales en espera 🐾</h3>
+  <div id="animalesCarousel" class="carousel slide" data-bs-ride="carousel">
+    <div class="carousel-inner">
+      {% for animal in animales_no_adoptados %}
+        <div class="carousel-item {% if forloop.first %}active{% endif %}">
+          <div class="d-flex justify-content-center">
+            <img src="{{ animal.foto.url }}" class="d-block w-50 rounded shadow" alt="{{ animal.nombre }}">
+          </div>
+          <div class="carousel-caption d-none d-md-block bg-dark bg-opacity-50 rounded">
+            <h5>{{ animal.nombre }}</h5>
+            <p>{{ animal.get_especie_display }} - {{ animal.get_sexo_display }}</p>
+          </div>
+        </div>
+      {% empty %}
+        <div class="carousel-item active">
+          <div class="text-center">
+            <p>No hay animales disponibles por ahora.</p>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#animalesCarousel" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon"></span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#animalesCarousel" data-bs-slide="next">
+      <span class="carousel-control-next-icon"></span>
+    </button>
+  </div>
+</section>
+
+{% endblock contenedor %}

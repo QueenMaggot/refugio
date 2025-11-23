@@ -1,0 +1,63 @@
+
+<!-- PARA EDITAR ADOPTANTE -->
+{% extends 'base.html' %}
+{% block contenedor %}
+{%load static%}
+<div class="container mt-4">
+  <h2 class="text-center mb-4">Editar Adoptante</h2>
+  <form method="post">
+    {% csrf_token %}
+    
+    <div class="mb-3">
+      {{ form.nombre.label_tag }}
+      {{ form.nombre }}
+    </div>
+    <div class="mb-3">
+      {{ form.apellido.label_tag }}
+      {{ form.apellido }}
+    </div>
+    <div class="mb-3">
+      {{ form.fecha_nacimiento.label_tag }}
+      {{ form.fecha_nacimiento }}  
+    </div>
+
+    <div class="mb-3">
+      {{ form.dni.label_tag }}
+      {{ form.dni }}  
+    </div>
+
+    <div class="mb-3">
+      {{ form.genero.label_tag }}
+      {{ form.genero }}  
+    </div>
+
+    <div class="mb-3">
+      {{ form.email.label_tag }}
+      {{ form.email }}  
+    </div>
+
+    <div class="mb-3">
+      {{ form.telefono.label_tag }}
+      {{ form.telefono }}  
+    </div>
+
+    <div class="mb-3">
+      {{ form.domicilio.label_tag }}
+      {{ form.domicilio }}  
+    </div>
+
+    <div class="mb-3">
+      {{ form.activo.label_tag }}
+      {{ form.activo }}  
+    </div>
+    
+    <a class="btn btn-primary" href="{% url 'adoptantes:adoptante_list' %}" class="card-link">Volver al Listado
+      <img src="{%static 'img/gato-azul.png'%}" style="height:40px">
+    </a>
+    <button type="submit" class="btn btn-success">Guardar cambios
+      <img src="{%static 'img/gato-neutro2.png'%}" style="height:40px">
+    </button>
+  </form>
+</div>
+
+{% endblock contenedor %}
