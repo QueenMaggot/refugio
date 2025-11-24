@@ -17,14 +17,17 @@
   <div class="row text-center">
     <div class="col-md-4">
       <h3 class="display-6 text-primary">{{ total_animales }}</h3>
-      <p>Animales esperando adopción</p>
+      <img src={% static "img/gato-triste.png" %} style="height: 40px">
+      <p> Animales esperando adopción</p>
     </div>
     <div class="col-md-4">
       <h3 class="display-6 text-sucess">{{ total_adopciones_aprobadas }}</h3>
+      <img src={% static "img/gato-love.png" %} style="height: 40px">
       <p>Adopciones realizadas</p>
     </div>
     <div class="col-md-4">
       <h3 class="display-6 text-info">{{ total_refugios }}</h3>
+      <img src={% static "img/perro-nerd.png" %} style="height: 40px">
       <p>Refugios participantes</p>
     </div>
   </div>
