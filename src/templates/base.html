@@ -13,9 +13,12 @@
       rel="stylesheet" 
       integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" 
       crossorigin="anonymous">
+     
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
     <!-- MI CSS -->
     <link rel="stylesheet" href="{% static 'styles/estilos.css' %}">
+
   </head>
   <body>
     <!-- BARRA DE NAVEGACIÓN -->
@@ -100,6 +103,8 @@
     </nav>
     <!-- FIN BARRA DE NAVEGACIÓN -->
 
+  
+
   <!-- Mensajes de Django -->
   {% if messages %}
     <div class="container mt-3">
@@ -117,7 +122,44 @@
       {% block contenedor %}{% endblock %}
     </main>
 
+<!-- Footer -->
+<footer class="bg-light text-muted text-center py-4 mt-5 border-top">
+  <div class="container">
+    <!-- Redes sociales -->
+
+    <div class="mb-3">     
+      Seguinos en nuestras redes  <img src = "{%static 'img/arrow.png'%}" style="height: 50px">
+    <a href="https://www.facebook.com/refugio" class="me-3" target="_blank" style="color:#1877F2;">
+      <img src = "{%static 'img/logo-fb.png'%}" style="height: 25px">
+    </a>
+    
+
+    <a href="https://instagram.com/queenmaggot_"class="me-3" target="_blank" style="color:#E4405F;">
+      <img src = "{%static 'img/logo-ig.png'%}" style="height: 25px">
+    </a>
+
+    <a href="https://www.linkdewp.com" class="me-3" target="_blank" style="color:#1877F2">
+      <img src = "{%static 'img/logo-wp.png'%}" style="height: 25px">
+    </a>
+
+    <a href="https://x.com/queenmaggot_" class="me-3" target="_blank" style="color:#1DA1F2;">
+      <img src = "{%static 'img/logo-x.png'%}" style="height: 25px">
+    </a>
+    </div>
+
+    <!-- Contacto -->
+    <a class="mb-1"><img src = "{%static 'img/mail.png'%}" style="height: 25px"> contacto@refugio.com |       
+      <img src = "{%static 'img/tel.png'%}" style="height: 25px"> +54 9 2964 123456</a>
+
+    <!-- Copyright -->
+    <p class="mb-0">&copy; 2025 Refugio Django. Todos los derechos reservados.</p>
+    <p class="mb-0">&reg; Creado por QueenMaggot.</p>
+  </div>
+</footer>
+
+
     <!-- Font Awesome (para íconos) -->
+
     <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
     
     <!-- BOOTSTRAP JS -->

@@ -42,7 +42,13 @@
           </div>
           <div class="carousel-caption d-none d-md-block bg-dark bg-opacity-50 rounded">
             <h5>{{ animal.nombre }}</h5>
-            <p>{{ animal.get_especie_display }} - {{ animal.get_sexo_display }}</p>
+            <p>{{ animal.get_especie_display }} - 
+              {% if animal.sexo == 'H' %} <!-- Si es hembra carga la img rosita-->
+                <img src= "{% static 'img/paw-rosa.png' %}" style="height:30px"> </img>
+              {% else %}  <!-- Si es macho carga la img azul -->
+                <img src= "{% static 'img/paw-azul.png' %}" style="height:30px"> </img>
+              {% endif %}
+            </p>
           </div>
         </div>
       {% empty %}
