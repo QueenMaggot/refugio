@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+
+{% block titulo %}Contacto{% endblock titulo %}
+{% load static %}
+{% block contenedor %}
+  <div class="container my-5">
+    <div class="text-center mb-4">
+      <h1 class="fw-bold">Contacto</h1>
+      <p class="lead">¿Querés adoptar, colaborar o ser voluntario? Escribinos o completá el formulario.</p>
+    </div>
+
+    <div class="row">
+      <!-- Datos de contacto -->
+      <div class="col-md-5 mb-4">
+        <h4 class="fw-semibold">Información de contacto</h4>
+        <ul class="list-unstyled">
+          <li class="mb-2">
+            <img src={% static "img/logo-mail.png" %} style="height:30px">
+            <a href="mailto:contacto@refugio.com">contacto@refugio.com</a>
+          </li>
+          <li class="mb-2">
+            <a  href= "https://+54 9 2964 123456" target="_blank"><img src = "{%static 'img/logo-tel.png'%}"  style="height: 25px"> +54 9 2964 123456</a>
+          </li>
+          <li class="mb-2">
+            <img src={% static "img/ubicacion.png" %} style="height:30px"> Río Grande, Tierra del Fuego, Argentina
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d75442.75568307207!2d-67.78591732995315!3d-53.77905506745673!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xbc4b1644a97ec1cb%3A0x48273f4501527328!2sR%C3%ADo%20Grande%2C%20Tierra%20del%20Fuego!5e0!3m2!1ses-419!2sar!4v1764005274265!5m2!1ses-419!2sar" height="200 px" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>            
+          </li>
+        </ul>
+        <p class="mt-3">También podés seguirnos en nuestras redes sociales para conocer más historias de adopción.</p>
+      </div>
+
+      <!-- Formulario -->
+      <div class="col-md-7">
+        <h4 class="fw-semibold">Envíanos un mensaje</h4>
+        <form method="post" action="#">
+          {% csrf_token %}
+          <div class="mb-3">
+            <label for="nombre" class="form-label">Nombre</label>
+            <input type="text" class="form-control" id="nombre" name="nombre" required>
+          </div>
+          <div class="mb-3">
+            <label for="email" class="form-label">Correo electrónico</label>
+            <input type="email" class="form-control" id="email" name="email" required>
+          </div>
+          <div class="mb-3">
+            <label for="mensaje" class="form-label">Mensaje</label>
+            <textarea class="form-control" id="mensaje" name="mensaje" rows="4" required></textarea>
+          </div>
+          <button type="submit" class="btn btn-primary">Enviar</button>
+        </form>
+      </div>
+    </div>
+  </div>
+{% endblock contenedor %}

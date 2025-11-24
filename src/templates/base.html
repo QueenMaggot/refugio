@@ -52,13 +52,17 @@
               <a class="nav-link {% if 'adopcion' in request.resolver_match.url_name and not perms.adopciones.add_adopcion %}active{% endif %}" href="{% url 'adopciones:adopcion_list' %}">Adopciones</a>
             </li>
             {% endif%}
-            
+
             <li class="nav-item">
-              <a class="nav-link">Preguntas Frecuentes </a>
+              <a class="nav-link" href="{% url 'quienes_somos' %}">Quienes Somos </a>
+            </li>
+
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'preguntas_frecuentes' %}"> FAQ </a>
             </li>
             
             <li class="nav-item">
-             <a class="nav-link">Contacto </a>
+             <a class="nav-link" href="{% url 'contacto' %}">Contacto </a>
             </li>
           </ul>
           
@@ -148,8 +152,8 @@
     </div>
 
     <!-- Contacto -->
-    <a class="mb-1"><img src = "{%static 'img/logo-mail.png'%}" target="_blank" style="height: 25px"> contacto@refugio.com |       
-      <img src = "{%static 'img/logo-tel.png'%}" target="_blank" style="height: 25px" > +54 9 2964 123456</a>
+    <a  href= "mailto:contacto@refugio.com" class="me-3" target="_blank" ><img src = "{%static 'img/logo-mail.png'%}" style="height: 25px"> contacto@refugio.com|</a>
+    <a  href= "https://+54 9 2964 123456" target="_blank"><img src = "{%static 'img/logo-tel.png'%}"  style="height: 25px"> +54 9 2964 123456</a>
 
     <!-- Copyright -->
     <p class="mb-0">&copy; 2025 Refugio Django. Todos los derechos reservados.</p>

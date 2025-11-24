@@ -3,6 +3,7 @@ from django.shortcuts import render
 from animales.models import Animal
 from refugios.models import Refugio
 from adopciones.models import Adopcion
+from django.views.generic import TemplateView
 
 def inicio(request):
     context = {
