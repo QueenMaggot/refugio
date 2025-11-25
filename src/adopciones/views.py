@@ -37,22 +37,14 @@ class AdopcionCreateView(LoginRequiredMixin, CreateView): #Solo necesito el perm
     def get_form_kwargs(self):
         kwargs = super().get_form_kwargs()
         kwargs['adoptante'] = self.request.user.adoptante  # ← Pasamos el adoptante
+        kwargs['animal'] = get_object_or_404(Animal, id=self.kwargs['animal_id'])
         return kwargs
-
-    def get_initial(self):
-        initial = super().get_initial()
-        animal_id = self.kwargs.get('animal_id')
-        if animal_id:
-            initial['animal'] = animal_id
-        return initial
     
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['animal']  =get_object_or_404(Animal, id=self.kwargs['animal_id'])
         context['today'] = date.today()
-        #animal_id = self.kwargs.get('animal_id')
-        #if animal_id:
-        #    context['animal'] = get_object_or_404(Animal, id=animal_id)
+
         return context
 
     def form_valid(self, form):
@@ -62,11 +54,6 @@ class AdopcionCreateView(LoginRequiredMixin, CreateView): #Solo necesito el perm
         form.instance.animal = get_object_or_404(Animal, id=self.kwargs['animal_id'])
         form.instance.estado = 'pendiente'
         form.instance.fecha_adopcion = date.today() #fecha automatica (HOY)
-        
-            # ¡Importante! El campo 'animal' está disabled → no viene en form.cleaned_data
-            # Así que lo tomamos de la URL:
-        animal_id  =self.kwargs.get('animal_id')
-        form.instance.animal = get_object_or_404(Animal, id=animal_id)
 
         response = super().form_valid(form)
             # Mensaje de éxito personalizado

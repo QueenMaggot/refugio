@@ -71,7 +71,9 @@
               <!-- Enlaces privados (solo con permisos) -->
               {% if perms.adoptantes.view_adoptante %}
             <li class="nav-item">
-              <a class="nav-link {% if 'adoptante' in request.resolver_match.url_name %}active{% endif %}" href="{% url 'adoptantes:adoptante_list' %}">Adoptantes</a>
+              <a class="nav-link {% if 'adoptante' in request.resolver_match.url_name %}active{% endif %}" href="{% url 'adoptantes:adoptante_list' %}">Adoptantes
+              <i class="fas fa-user"> </i>
+              </a>
             </li>
               {% endif %}
             {% endif %}
@@ -100,7 +102,7 @@
             <li class="nav-item dropdown">
               
               <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                <i class="fas fa-user"></i> {{ user.adoptante }}
+                <i class="fas fa-user-circle"></i> {{ user.adoptante }}
               </a>
               <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
                 <li>

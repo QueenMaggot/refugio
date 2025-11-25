@@ -12,29 +12,17 @@ class AdopcionForm(forms.ModelForm):
     class Meta:
         model = Adopcion
         fields = []#['animal']  #Eliminé el campo ADOPTANTE, porque lo traigo automaticamente, lo mismo con 'ESTADO' = 'PENDIENTE'
-      #  widgets = {
-       #     'animal' : forms.Select(attrs={'class': 'form-control', 'disabled' : 'disabled'}),
-            #'adoptante' : forms.Select(attrs={'class': 'form-control'}),
-            #'estado' : forms.Select(attrs={'class': 'form-control'}),
-            
-        #}
+
 
     def __init__(self, *args, **kwargs):
         self.adoptante = kwargs.pop('adoptante', None)  # ← Recibimos el adoptante
-        #self.animal = kwargs.pop('animal', None) # Pasamos el animal 
+        self.animal = kwargs.pop('animal', None) # Pasamos el animal 
         super().__init__(*args, **kwargs)
 
-         # Filtra animales disponibles
-        #self.fields['animal'].queryset = Animal.objects.filter(adopcion__isnull=True)
-        #self.fields['animal'].label_from_instance = lambda obj: f"{obj.id} - {obj.nombre} ({obj.get_especie_display()}, {obj.get_sexo_display()}) - {obj.refugio.nombre}"
-
-            # Si hay un animal en la URL, preseleccionarlo
-        #if not self.initial.get('animal'):
-        #    #self.initial['animal'].widget.attrs['readonly'] = 'readonly'
-        #self.fields['animal'].widget.attrs['disabled'] = 'disabled'
         
     def clean(self):
         cleaned_data = super().clean()
+        
         if self.adoptante:
             # Verifica si el adoptante ya tiene una adopción pendiente
             #if Adopcion.objects.filter(
@@ -50,6 +38,14 @@ class AdopcionForm(forms.ModelForm):
                     f"| {adopcion_pendiente.animal.nombre} |."
                     "Espera a que sea aprobada o rechazada antes de solicitar otra."
                 )
+        
+
+        if self.animal:  # Verifica si el animal ya tiene una solicitud de adopcion pendiente
+            if Adopcion.objects.filter(animal=self.animal).exists():
+                raise ValidationError(
+                    f"El animal '{self.animal.nombre}' ya tiene una solicitud de adopción y no está disponible"
+                )
+
         return cleaned_data
     
 
