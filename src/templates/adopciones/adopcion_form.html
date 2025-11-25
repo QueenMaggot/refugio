@@ -3,8 +3,11 @@
 {% extends 'base.html' %}
 {% block contenedor %}
 {% load static %}
-<h2 class="d-flex justify-content-center">Solicitar Adopción</h2>
-<form method="post" class="form-style-3">
+
+<div class= "form-style-3 d-flex justify-content-center">
+  <form method="post" class="form-style-3">
+  <h2 class="titulo-grid d-flex justify-content-center">Solicitar Adopción</h2>
+
     {% csrf_token %}
 
     {% if form.non_field_errors %}
@@ -35,5 +38,6 @@
       <img src ="{% static 'img/gato-neutro2.png' %}"  style="height:40px">
     </button>
 </form>
+</div>
 
 {% endblock contenedor %}

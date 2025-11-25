@@ -6,6 +6,7 @@
 
 <div class= "form-style-3 d-flex justify-content-center">
   <form method="post" enctype="multipart/form-data">
+    
     <h2 class="titulo-grid d-flex justify-content-center"> Agregar Animal</h2><br>
     {% csrf_token %}
     <div class="mb-3">
@@ -24,17 +25,17 @@
      </div>
 
      <div class="mb-3">
-            <label>Genero:</label>
-      {{ filter.form.sexo }}
-      <input type="checkbox" name="sexo" value="H"> Hembra
-      <input type="checkbox" name="sexo" value="M"> Macho
+        <label>Genero:</label>
+        {{ filter.form.sexo }}
+        <input type="checkbox" name="sexo" value="H"> Hembra
+        <input type="checkbox" name="sexo" value="M"> Macho
      </div>
 
     </div>
     
     <div class="mb-3">
           {{ form.descripcion.label_tag }}
-          {{ form.descripcion.as_widget }} 
+          {{ form.descripcion.as_widget}} 
     </div>
 
       {{form.fecha_nacimiento.label_tag}}

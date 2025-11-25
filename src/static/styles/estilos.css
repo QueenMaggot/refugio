@@ -26,6 +26,7 @@
   line-height: 1.8;
 }
 
+
 .centrar-boton {
   display: flex;
   justify-content: center;
@@ -42,4 +43,12 @@ footer a:hover {
 
 footer a img {
   text-decoration: none;
+}
+
+
+/* Hace que el textarea de descripción sea más compacto */
+.form-style-3 textarea.form-control {
+  height: auto;
+  min-height: 60px; /* ajusta este valor si quieres más o menos alto */
+  resize: vertical; /* permite al usuario agrandarlo si quiere */
 }

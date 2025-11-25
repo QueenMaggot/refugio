@@ -7,7 +7,10 @@ class AnimalForm(forms.ModelForm):
         fields = ['nombre', 'especie', 'sexo', 'descripcion', 'fecha_nacimiento', 'refugio', 'foto']
         widgets = {
             'nombre': forms.TextInput(attrs={'class': 'form-control'}),
-            'descripcion': forms.Textarea(attrs={'class': 'form-control', 'rows': 3}),
+            'descripcion': forms.Textarea(attrs={
+                'class': 'form-control', 
+                'rows': 3,
+                'style': 'height:80px'}),
             'fecha_nacimiento': forms.DateInput(
                 attrs={'type': 'date', 'class': 'form-control'}
             ),

@@ -5,11 +5,12 @@
 {% block contenedor %}
 
 <div class="form-style-3">
-  <h2 class="d-flex justify-content-center"> Detalle del Animal </h2>
+  <h2 class="text-center mb-4"> Detalle del Animal </h2>
+
   <div class="d-flex justify-content-center">
-    <div class="card" style="width: 22rem;">    
+    <div class="card" style="width: 100%; max-width: 30rem;">    <!-- Ancho flexible -->
       {% if animal.foto %}
-        <img src="{{ animal.foto.url }}" class="card-img-top" alt="{{ animal.nombre }}" width="150">
+        <img src="{{ animal.foto.url }}" class="card-img-top" alt="{{ animal.nombre }}" style="height: 200px; width: 100%; object-fit: contain;">
       {% endif %}
       <div class="card-body">
         <h5 class="card-title">{{ animal.nombre }}</h5>
@@ -29,10 +30,13 @@
         </li>
         <li class="list-group-item">Refugio: {{ animal.refugio }}</li>
       </ul>
+      
       <div class="card-body">
-        <!-- Botón de Listado -->
+        <!-- Contenedor de botones con flex-wrap -->
+        <div class="d-grid gap-2 d-md-flex justify-content-md-center">
+        <!-- Botón de Volver al Listado -->
         <a href="{% url 'animales:animal_list' %}" class="btn btn-success">Volver al Listado
-            <img src ="{% static 'img/gato-rosa2.png' %}"  style="height:40px">
+            <img src ="{% static 'img/gato-rosa2.png' %}"  style="height:30px">
         </a>
         
         <!-- Botón de Adopción o Login/Registro -->
@@ -40,20 +44,20 @@
             {% if not animal.adoptado%}
               {% if user.adoptante.activo %}
             <a href="{% url 'adopciones:adopcion_create' animal.id %}" class="btn btn-primary">Solicitar Adopción
-             <img src ="{% static 'img/gato-love.png' %}"  style="height:38px">
+             <img src ="{% static 'img/gato-love.png' %}"  style="height:30px">
             </a>
             {% endif %}
             {% endif %}
         {% else %}
           <a href="{% url 'login' %}" class="btn btn-primary">
-           Inicia Sesión para Adoptar <img src ="{% static 'img/gato-rosa.png' %}"  style="height:40px">
+           Inicia Sesión para Adoptar <img src ="{% static 'img/gato-rosa.png' %}"  style="height:30px">
           </a>
         {% endif %}
 
         <!-- Botón de Borrar (solo para admins) -->
         {% if perms.animales.delete_animal %}
           <a href="{% url 'animales:animal_delete' animal.id %}" class="btn btn-danger">Borrar Animal
-             <img src="{%static 'img/gato-delete.png'%}" style="height:40px">
+             <img src="{%static 'img/gato-delete.png'%}" style="height:30px">
           </a>
         {% endif %}
       </div>

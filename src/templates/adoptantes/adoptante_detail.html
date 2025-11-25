@@ -5,13 +5,15 @@
 {% block contenedor %}
 
 <div class="form-style-3">
-  <h2 class="d-flex justify-content-center"> Detalle del Adoptante </h2>
+  <h2 class="text-center mb-4"> Detalle del Adoptante </h2>
+
     <div class="d-flex justify-content-center">
-    <div class="card" style="width: 22rem;">    
+    <div class="card" style="width: 100%; max-width: 30rem;">    
 
       <div class="card-body">
         <h5 class="card-title">Nombre: {{adoptante.nombre}}, {{adoptante.apellido}}</h5>
       </div>
+
       <ul class="list-group list-group-flush">
         <li class="list-group-item">Genero: {{adoptante.get_genero_display}}</li>
         <li class="list-group-item">Fecha Nacimiento: {{adoptante.fecha_nacimiento}}</li>
@@ -26,6 +28,7 @@
           <img src="{% static 'img/inactivo.png' %}" width="20" /> {% endif %}
         </li>
       </ul>
+      
       <div class="card-body">
         <a class="btn btn-primary" href="{% url 'adoptantes:adoptante_list' %}" class="card-link">Volver al Listado
           <img src="{%static 'img/gato-azul.png'%}" style="height:40px">

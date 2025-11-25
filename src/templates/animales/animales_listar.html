@@ -65,7 +65,13 @@
       <div class="col-md-4 mb-4">
         <div class="card text-center">
           {% if animal.foto %}
-            <img src="{{ animal.foto.url }}" class="card-img-top" alt="{{ animal.nombre }}" style="height:200px; object-fit:cover;">
+            <img src="{{ animal.foto.url }}" class="card-img-top" alt="{{ animal.nombre }}" style="height: 200px; width: 100%; object-fit: contain; object-position: center; background-color: #f8f9fa;">
+            
+            <!--style="height:200px; object-fit:cover;">-->
+          {% else %} <!-- SIN FOTO -->
+            <div class="bg-light d-flex align-items-center justify-content-center" style="height: 200px;">
+              <i class="fas fa-paw fa-3x text-muted"></i>
+            </div>
           {% endif %}
           <div class="card-body">
             <h5 class="card-title">{{ animal.nombre }} 

@@ -3,6 +3,9 @@
 {% extends 'base.html' %}
 {% block contenedor %}
 {% load static %}
+
+<div class="form-style-3"> 
+
 <h2 class="text-center mb-4">Editar Animal</h2>
 <form method="post" enctype="multipart/form-data" class= "form-style-3">
     {% csrf_token %}
@@ -12,7 +15,10 @@
     <p>{{ form.nombre.label_tag }} {{ form.nombre }}</p>
     <p>{{ form.especie.label_tag }} {{ form.especie }}</p>
     <p>{{ form.sexo.label_tag }} {{ form.sexo }}</p>
-    <p>{{ form.descripcion.label_tag }} {{ form.descripcion }}</p>
+    <p>
+        {{ form.descripcion.label_tag }}
+        {{ form.descripcion }}
+    </p>
     <p>{{ form.fecha_nacimiento.label_tag }} {{ form.fecha_nacimiento }}</p>
     <p>{{ form.refugio.label_tag }} {{ form.refugio }}</p>
     <p>{{ form.adoptado.label_tag }} {{ form.adoptado }}</p>
@@ -31,6 +37,7 @@
         <img src ="{% static 'img/gato-neutro2.png' %}"  style="height:40px">
     </button>
 </form>
+</div>
 
 
 {% endblock contenedor %}

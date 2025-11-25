@@ -5,10 +5,14 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block contenedor %}
-<div class="container mt-4">
-  <h2 class="text-center mb-4">Registrarse como Adoptante</h2>
+
+<div class= "form-style-3 d-flex justify-content-center">
   
-  <form method="post">
+  <h2 class="titulo-grid text-center mb-4">Registrarse como Adoptante</h2>
+  <form method="post" class="w-100" style="max-width: 400px;">
+  <br>
+  
+  
     {% csrf_token %}
     
     <div class="mb-3">
@@ -59,24 +63,28 @@
       {{ form.genero }}
     </div>
 
-    <button type="submit" class="btn btn-success">
-      Registrarse <img src={% static "img/agregar.png" %} style="height:40px">
-    </button>
-    <a class="btn btn-primary" href="{% url 'inicio' %}" class="card-link">Volver al Inicio
-      <img src={% static "img/gato-neutro.png" %} style="height:40px">
-    </a>
+    <div class="d-grid gap-2d-md-flex justify-content-md-center mb-3">
+      <button type="submit" class="btn btn-success">
+        Registrarse <img src={% static "img/agregar.png" %} style="height:40px">
+      </button>
+      <a class="btn btn-primary" href="{% url 'inicio' %}" class="card-link">Volver al Inicio
+        <img src={% static "img/gato-neutro.png" %} style="height:40px">
+      </a>
+    </div>
   </form>
 
-</div>
+    <!-- Botón para crear usuario -->
+  <div class="d-grid gap-2 d-md-flex justify-content-md-center mt-2" style="max-width: 400px; width: 100%;" >
+    <div class="d-flex align-items-center">
+      <p class="mb-2">¿Ya tienes cuenta?</p>
+    </div>
+    <a href="{% url 'login' %}" class="btn btn-success">
+      Inicia Sesión 
+      <img src="{% static 'img/gato-rosa2.png' %}" style="height:40px">
+    </a>
 
+  </div>
 
-<!-- Botón para crear usuario -->
-<div class="mt-3 d-flex align-items-center">
-  <p class="mb-0 me-2">¿Ya tienes cuenta?</p>
-  <a href="{% url 'login' %}" class="btn btn-success">
-    Inicia Sesión 
-    <img src="{% static 'img/gato-rosa2.png' %}" style="height:40px">
-  </a>
 </div>
 
 {% endblock %}
