@@ -14,7 +14,6 @@ class Adoptante(models.Model):
     dni = models.BigIntegerField() # Un entero grande
     user = models.OneToOneField(User, on_delete=models.CASCADE, null=True, blank=True) #El user de las cuentas va a ser un adoptante.
     fecha_nacimiento = models.DateField() # Solo guardamos la fecha
-    email = models.EmailField() # Campo TIPO EMAIL, no requerido
     domicilio = models.CharField(max_length=50)
     telefono = models.BigIntegerField()
     activo = models.BooleanField(default=True)
@@ -26,7 +25,11 @@ class Adoptante(models.Model):
     
     class Meta: # Para ordenar la info 
         ordering = ['apellido', 'nombre']
-
+        
+    @property
+    def email(self):
+        return self.user.email if self.user else None
+    
     @property
     def edad(self):
         hoy = date.today()

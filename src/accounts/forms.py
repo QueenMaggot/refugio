@@ -24,8 +24,10 @@ class RegistroAdoptanteForm(forms.ModelForm):
         # Crea el usuario
         user = User.objects.create_user(
             username=self.cleaned_data['dni'],
-            email=self.cleaned_data['email'],
-            password=self.cleaned_data['password']
+            password=self.cleaned_data['password'],
+            first_name = self.cleaned_data['nombre'],
+            last_name = self.cleaned_data['apellido'],
+            email = self.cleaned_data['email']
         )
         # Crea el adoptante vinculado
         adoptante = super().save(commit=False)

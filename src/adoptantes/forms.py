@@ -16,6 +16,5 @@ class AdoptanteForm(forms.ModelForm):
             'apellido': forms.TextInput(attrs={'class': 'form-control'}),
             'domicilio': forms.TextInput(attrs={'class': 'form-control'}),
             'telefono': forms.NumberInput(attrs={'class': 'form-control'}),
-            'email': forms.EmailInput(attrs={'class': 'form-control'}),
             'dni': forms.NumberInput(attrs={'class': 'form-control'}),
         }

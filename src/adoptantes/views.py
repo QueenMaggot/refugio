@@ -29,7 +29,6 @@ class AdoptanteUpdateView(PermissionRequiredMixin,LoginRequiredMixin, UpdateView
     model = Adoptante
     form_class= AdoptanteForm
     template_name = 'adoptantes/adoptante_list.html'
-    #fields = ['nombre','apellido','dni','genero','fecha_nacimiento','email','domicilio','activo','telefono']
     success_url = '/adoptantes/listado/'
     permission_required = 'adoptantes.change_adoptante'
 

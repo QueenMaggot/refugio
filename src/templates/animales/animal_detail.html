@@ -36,14 +36,14 @@
         </a>
         
         <!-- Botón de Adopción o Login/Registro -->
-        {% if user.is_authenticated %}
-         {% if user.activo %}
-          {% if not animal.adoptado %}
+         {% if user.is_authenticated %}
+            {% if not animal.adoptado%}
+              {% if user.adoptante.activo %}
             <a href="{% url 'adopciones:adopcion_create' animal.id %}" class="btn btn-primary">Solicitar Adopción
              <img src ="{% static 'img/gato-love.png' %}"  style="height:38px">
             </a>
             {% endif %}
-          {% endif %}
+            {% endif %}
         {% else %}
           <a href="{% url 'login' %}" class="btn btn-primary">
            Inicia Sesión para Adoptar <img src ="{% static 'img/gato-rosa.png' %}"  style="height:40px">
