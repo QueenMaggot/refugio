@@ -28,7 +28,8 @@ class AnimalListView(FilterView): #Quité mixins de autenticación, porque no ha
 
     def get_queryset(self):
         # El queryset base: todos los animales
-        return Animal.objects.select_related('refugio')
+        return Animal.objects.exclude(adopcion__estado='aprobada').distinct()
+        #return Animal.objects.select_related('refugio')
 
 class AnimalCreateView(PermissionRequiredMixin,LoginRequiredMixin, CreateView):
     model = Animal

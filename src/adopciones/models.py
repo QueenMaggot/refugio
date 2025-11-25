@@ -5,7 +5,7 @@ from adoptantes.models import Adoptante
 # Create your models here.
 
 class Adopcion(models.Model):
-    animal = models.OneToOneField(Animal, on_delete=models.CASCADE)
+    animal = models.ForeignKey(Animal, on_delete=models.CASCADE)
     adoptante = models.ForeignKey(Adoptante, on_delete=models.CASCADE, related_name='adopciones')
     fecha_adopcion = models.DateField()
     estado = models.CharField(max_length=20, choices=[('pendiente', 'Pendiente'), ('aprobada', 'Aprobada'), ('rechazada', 'Rechazada')])

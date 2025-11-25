@@ -23,29 +23,21 @@ class AdopcionForm(forms.ModelForm):
     def clean(self):
         cleaned_data = super().clean()
         
-        if self.adoptante:
+        if self.adoptante and self.animal:
+            if Adopcion.objects.filter(animal=self.animal, estado='aprobada').exists():
             # Verifica si el adoptante ya tiene una adopción pendiente
             #if Adopcion.objects.filter(
-            adopcion_pendiente = Adopcion.objects.filter(
-                adoptante=self.adoptante,
-                estado= 'pendiente'
+                raise ValidationError(f"El animal'{self.animal.nombre}' ya fue adoptado.")
             
-            ).first() #).exists(): #exists solo devuelve true o false; first devuelve el objeto completo o NONE
+            
                 
-            if adopcion_pendiente:
-                raise ValidationError(
-                    f"Ya tienes una solicitud de adopción pendiente para el animal "
-                    f"| {adopcion_pendiente.animal.nombre} |."
-                    "Espera a que sea aprobada o rechazada antes de solicitar otra."
-                )
-        
-
-        if self.animal:  # Verifica si el animal ya tiene una solicitud de adopcion pendiente
-            if Adopcion.objects.filter(animal=self.animal).exists():
-                raise ValidationError(
-                    f"El animal '{self.animal.nombre}' ya tiene una solicitud de adopción y no está disponible"
-                )
-
+            if Adopcion.objects.filter(
+                 animal = self.animal,
+                 adoptante = self.adoptante,
+                 estado = 'pendiente'
+            ).exists():
+                    
+                raise ValidationError(f"Ya tiene solicitud pendiente para: '{self.animal.nombre}")
         return cleaned_data
     
 
