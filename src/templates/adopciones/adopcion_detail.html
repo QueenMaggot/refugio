@@ -1,0 +1,66 @@
+<!-- adopciones/adopcion_detail.html -->
+{% extends 'base.html' %}
+{% block contenedor %}
+{% load static %}
+
+{% if adopcion %}
+<h2 class="d-flex justify-content-center">Detalle de la Adopción</h2>
+<div class="form-style-3">
+    
+    <p><strong>Animal:</strong> {{ adopcion.animal.nombre }} ({{ adopcion.animal.get_especie_display }}, {{ adopcion.animal.get_sexo_display }})</p>
+
+    <div class="card" style="width: 22rem;">   
+      {% if adopcion.animal.foto %}
+        <img src="{{ adopcion.animal.foto.url }}" class="card-img-top" alt="{{ adopcion.animal.nombre }}" width="150">
+      {% endif %}
+
+    <div class="card-body">
+    
+    <p><strong>Refugio:</strong> {{ adopcion.animal.refugio.nombre }}</p>
+
+    <p><strong>Estado:</strong> {{ adopcion.get_estado_display }}</p>
+
+    <p><strong>Fecha de Adopción:</strong> 
+    {% if adopcion.fecha_adopcion %}
+        {{ adopcion.fecha_adopcion|date:"d/m/Y" }}
+    {% else %}
+        <em>No asignada</em>
+    {% endif %}
+
+    
+    <h4><strong>Datos del Adoptante:</strong></h4>
+
+    <p><strong>Adoptante:</strong> {{ adopcion.adoptante }}</p>
+        
+    <p><strong>Email:</strong> {{ adopcion.adoptante.email }}</p>
+    
+    <p><strong>Telefono:</strong> {{ adopcion.adoptante.telefono }}</p>
+    
+    <p><strong>Domicilio:</strong> {{ adopcion.adoptante.domicilio }}</p>
+    </p>
+
+    <a class="btn btn-primary" href="{% url 'adopciones:adopcion_list' %}">
+        Volver al Listado
+        <img src="{% static 'img/gato-azul.png' %}" style="height:40px">
+    </a>
+
+    {% if perms.adopciones.change_adopcion and adopcion.estado == 'pendiente' %}
+        <a class="btn btn-warning" href="{% url 'adopciones:adopcion_update' adopcion.pk %}">
+            Editar Adopción
+            <img src="{% static 'img/gato-edicion.png' %}" style="height:40px">
+        </a>
+    {% endif %}
+
+    {% if perms.adopciones.delete_adopcion %}
+    <a href="{% url 'adopciones:adopcion_delete' adopcion.pk %}" class="btn btn-danger">Eliminar
+        <img src ="{% static 'img/gato-delete.png' %}"  style="height:40px">
+    </a>
+    {% endif %}
+</div>
+
+
+{% else %}
+<p class="text-muted">No se encontró la adopción.</p>
+{% endif %}
+
+{% endblock contenedor %}

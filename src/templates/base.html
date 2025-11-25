@@ -52,7 +52,17 @@
               <a class="nav-link {% if 'adopcion' in request.resolver_match.url_name and not perms.adopciones.add_adopcion %}active{% endif %}" href="{% url 'adopciones:adopcion_list' %}">Adopciones</a>
             </li>
             {% endif%}
+            <!-- Enlaces para usuarios autenticados -->
 
+            {% if user.is_authenticated %}
+              <!-- Enlaces privados (solo con permisos) -->
+              {% if perms.adoptantes.view_adoptante %}
+            <li class="nav-item">
+              <a class="nav-link {% if 'adoptante' in request.resolver_match.url_name %}active{% endif %}" href="{% url 'adoptantes:adoptante_list' %}">Adoptantes</a>
+            </li>
+              {% endif %}
+            {% endif %}
+            
             <li class="nav-item">
               <a class="nav-link" href="{% url 'quienes_somos' %}">Quienes Somos </a>
             </li>
