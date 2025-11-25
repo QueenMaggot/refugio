@@ -4,12 +4,15 @@
 {% load static %}
 
 {% if adopcion %}
-<h2 class="d-flex justify-content-center">Detalle de la Adopción</h2>
 <div class="form-style-3">
-    
-    <p><strong>Animal:</strong> {{ adopcion.animal.nombre }} ({{ adopcion.animal.get_especie_display }}, {{ adopcion.animal.get_sexo_display }})</p>
+<h2 class="d-flex justify-content-center">Detalle de la Adopción</h2>
 
+<div class="form-style-3 d-flex justify-content-center">
+    
     <div class="card" style="width: 22rem;">   
+    <br>
+    <p><strong>Animal:</strong> {{ adopcion.animal.nombre }} ({{ adopcion.animal.get_especie_display }}, {{ adopcion.animal.get_sexo_display }})</p>
+    
       {% if adopcion.animal.foto %}
         <img src="{{ adopcion.animal.foto.url }}" class="card-img-top" alt="{{ adopcion.animal.nombre }}" width="150">
       {% endif %}
@@ -59,7 +62,7 @@
     </a>
     {% endif %}
 </div>
-
+</div>
 
 {% else %}
 <p class="text-muted">No se encontró la adopción.</p>
