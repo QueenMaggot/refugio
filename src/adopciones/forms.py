@@ -60,7 +60,7 @@ class AdopcionEdicionForm(forms.ModelForm):
         widgets = {
             'estado': forms.Select(attrs={'class': 'form-control'}),
             'fecha_adopcion': forms.DateInput(
-                #format='%Y-%m-%d',   # ← formato compatible con <input type="date">
+                format='%Y-%m-%d',   # ← formato compatible con <input type="date">
                 attrs={'type': 'date', 'class': 'form-control'}
 
             ),

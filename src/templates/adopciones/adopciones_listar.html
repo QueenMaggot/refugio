@@ -54,9 +54,11 @@
                   </a>
                 {% endif %}
                 {% if perms.adopciones.change_adopcion %}
+                  {% if adopcion.estado == 'pendiente' %}
                   <a href="{% url 'adopciones:adopcion_update' adopcion.pk %}" class="btn btn-sm btn-outline-warning me-1">Editar
                      <img src ="{% static 'img/gato-edicion.png' %}"  style="height:40px">
                   </a>
+                  {% endif %}
                 {% endif %}
                 {% if perms.adopciones.delete_adopcion %}
                   <a href="{% url 'adopciones:adopcion_delete' adopcion.pk %}" class="btn btn-sm btn-outline-danger">Eliminar
