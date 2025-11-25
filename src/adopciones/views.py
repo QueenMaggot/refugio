@@ -12,11 +12,20 @@ from .forms import AdopcionForm, AdopcionEdicionForm
 from datetime import date
 # Create your views here.
 
-class AdopcionListView(PermissionRequiredMixin,LoginRequiredMixin, ListView):
+class AdopcionListView(LoginRequiredMixin, ListView):
     model = Adopcion
     template_name = 'adopciones/adopciones_listar.html'
     context_object_name = 'adopciones'
     permission_required = 'adopciones.view_adopcion'
+    
+    def get_queryset(self):
+        user = self.request.user
+        # Si tiene permiso para ver cualquier adopción, muestra todas
+        if user.has_perm('adopciones.view_adopcion'):
+            return Adopcion.objects.select_related('animal', 'adoptante', 'animal__refugio')
+        else:
+            # Si NO tiene permiso, solo muestra las APROBADAS
+            return Adopcion.objects.filter(estado='aprobada').select_related('animal', 'adoptante', 'animal__refugio')
 
 class AdopcionCreateView(LoginRequiredMixin, CreateView): #Solo necesito el permiso del LOGIN
     model = Adopcion

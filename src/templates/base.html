@@ -47,11 +47,14 @@
             <li class="nav-item">
               <a class="nav-link {% if 'refugio' in request.resolver_match.url_name %}active{% endif %}" href="{% url 'refugios:refugio_list' %}">Refugios</a>
             </li>
+
             {% if user.is_authenticated %}
             <li class="nav-item">
-              <a class="nav-link {% if 'adopcion' in request.resolver_match.url_name and not perms.adopciones.add_adopcion %}active{% endif %}" href="{% url 'adopciones:adopcion_list' %}">Adopciones</a>
+              <!--<a class="nav-link {% if 'adopcion' in request.resolver_match.url_name and not perms.adopciones.add_adopcion %}active{% endif %}" href="{% url 'adopciones:adopcion_list' %}">Adopciones</a>-->
+              <a class="nav-link {% if 'adopcion' in request.resolver_match.url_name %}active{% endif %}" href="{% url 'adopciones:adopcion_list' %}">Adopciones</a>
             </li>
             {% endif%}
+
             <!-- Enlaces para usuarios autenticados -->
 
             {% if user.is_authenticated %}
@@ -78,16 +81,7 @@
           
           <!-- Enlaces condicionales y autenticación -->
           <ul class="navbar-nav mb-2 mb-lg-0">
-            <!-- Enlaces para usuarios autenticados -->
             {% if user.is_authenticated %}
-              <!-- Enlaces privados (solo con permisos) -->
-              {% if perms.adoptantes.view_adoptante %}
-                <li class="nav-item">
-                  <a class="nav-link {% if 'adoptante' in request.resolver_match.url_name %}active{% endif %}" href="{% url 'adoptantes:adoptante_list' %}">Adoptantes</a>
-                </li>
-              {% endif %}
-              
-              
               <!-- Dropdown de usuario -->
             <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">

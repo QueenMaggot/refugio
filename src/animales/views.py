@@ -1,4 +1,5 @@
 from django.shortcuts import render,redirect
+from django_filters.views import FilterView
 from django.views.generic import ListView, CreateView, DetailView, UpdateView, DeleteView
 from django.contrib import messages
 from django.contrib.auth.mixins import LoginRequiredMixin #(es una clase que obliga que este log para acceder a ella)
@@ -6,24 +7,28 @@ from django.contrib.auth.mixins import PermissionRequiredMixin
 from .models import Animal
 from .filters import AnimalFilter
 from .forms import AnimalForm
+
 # Create your views here.
 
-class AnimalListView(ListView): #Quité mixins de autenticación, porque no hacen falta
+class AnimalListView(FilterView): #Quité mixins de autenticación, porque no hacen falta
     model = Animal
+    filterset_class = AnimalFilter
     template_name = 'animales/animales_listar.html'
     context_object_name = 'animales'
     paginate_by = 9
 
-    def get_queryset(self):
-    # Aplica los filtros
-        queryset = Animal.objects.all()
-        self.filter = AnimalFilter(self.request.GET, queryset=queryset)
-        return self.filter.qs
+    def get_filterset_kwargs(self, filterset_class):
+        kwargs = super().get_filterset_kwargs(filterset_class)
+        # Si no hay parámetros GET, aplica "adoptado=False" por defecto
+        if not self.request.GET:
+            kwargs['data'] = {'adoptado': 'False'}
+        else:
+            kwargs['data'] = self.request.GET
+        return kwargs
 
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context['filter'] = self.filter  # Pasa los filtros al template
-        return context
+    def get_queryset(self):
+        # El queryset base: todos los animales
+        return Animal.objects.select_related('refugio')
 
 class AnimalCreateView(PermissionRequiredMixin,LoginRequiredMixin, CreateView):
     model = Animal

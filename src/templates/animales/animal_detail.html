@@ -37,10 +37,12 @@
         
         <!-- Botón de Adopción o Login/Registro -->
         {% if user.is_authenticated %}
+         {% if user.activo %}
           {% if not animal.adoptado %}
             <a href="{% url 'adopciones:adopcion_create' animal.id %}" class="btn btn-primary">Solicitar Adopción
              <img src ="{% static 'img/gato-love.png' %}"  style="height:38px">
             </a>
+            {% endif %}
           {% endif %}
         {% else %}
           <a href="{% url 'login' %}" class="btn btn-primary">
