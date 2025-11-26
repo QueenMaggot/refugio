@@ -1,89 +1,56 @@
-
 <!-- accounts/templates/accounts/register.html -->
-
 
 {% extends 'base.html' %}
 {% load static %}
 {% block contenedor %}
 
-<div class= "form-style-3 d-flex justify-content-center">
-  
-  <h2 class="titulo-grid text-center mb-4">Registrarse como Adoptante</h2>
-  <form method="post" class="w-100" style="max-width: 400px;">
-  <br>
-  
-  
+<div class="form-style-3 d-flex justify-content-center">
+
+  <form method="post" class="w-100" style="max-width: 430px;">
+    <h2 class="titulo-grid text-center mb-4">Registrarse como Adoptante</h2>
+
     {% csrf_token %}
-    
-    <div class="mb-3">
-      {{ form.dni.label_tag }}
-      {{ form.dni }}
-      {% if form.dni.errors %}
-        <div class="text-danger">{{ form.dni.errors }}</div>
-      {% endif %}
-    </div>
 
-    <div class="mb-3">
-      {{ form.nombre.label_tag }}
-      {{ form.nombre }}
-    </div>
+    <!-- Campos del formulario -->
+    <div class="mb-3">{{ form.dni.label_tag }} {{ form.dni }}</div>
+    <div class="mb-3">{{ form.nombre.label_tag }} {{ form.nombre }}</div>
+    <div class="mb-3">{{ form.apellido.label_tag }} {{ form.apellido }}</div>
+    <div class="mb-3">{{ form.email.label_tag }} {{ form.email }}</div>
+    <div class="mb-3">{{ form.password.label_tag }} {{ form.password }}</div>
+    <div class="mb-3">{{ form.fecha_nacimiento.label_tag }} {{ form.fecha_nacimiento }}</div>
+    <div class="mb-3">{{ form.domicilio.label_tag }} {{ form.domicilio }}</div>
+    <div class="mb-3">{{ form.telefono.label_tag }} {{ form.telefono }}</div>
+    <div class="mb-3">{{ form.genero.label_tag }} {{ form.genero }}</div>
 
-    <div class="mb-3">
-      {{ form.apellido.label_tag }}
-      {{ form.apellido }}
-    </div>
-
-    <div class="mb-3">
-      {{ form.email.label_tag }}
-      {{ form.email }}
-    </div>
-
-    <div class="mb-3">
-      {{ form.password.label_tag }}
-      {{ form.password }}
-    </div>
-
-    <div class="mb-3">
-      {{ form.fecha_nacimiento.label_tag }}
-      {{ form.fecha_nacimiento }}
-    </div>
-
-    <div class="mb-3">
-      {{ form.domicilio.label_tag }}
-      {{ form.domicilio }}
-    </div>
-
-    <div class="mb-3">
-      {{ form.telefono.label_tag }}
-      {{ form.telefono }}
-    </div>
-
-    <div class="mb-3">
-      {{ form.genero.label_tag }}
-      {{ form.genero }}
-    </div>
-
-    <div class="d-grid gap-2d-md-flex justify-content-md-center mb-3">
-      <button type="submit" class="btn btn-success">
-        Registrarse <img src={% static "img/agregar.png" %} style="height:40px">
+    <!-- FILA 1: Registrarse / Volver al inicio -->
+    <div class="d-flex gap-3 mb-3">
+      <button type="submit" class="btn btn-success flex-fill d-flex justify-content-center align-items-center gap-2">
+        <img src="{% static 'img/agregar.png' %}" style="height:28px">
+        Registrarse
       </button>
-      <a class="btn btn-primary" href="{% url 'inicio' %}" class="card-link">Volver al Inicio
-        <img src={% static "img/gato-neutro.png" %} style="height:40px">
+
+      <a href="{% url 'inicio' %}" class="btn btn-primary flex-fill d-flex justify-content-center align-items-center gap-2">
+        <img src="{% static 'img/gato-neutro.png' %}" style="height:28px">
+        Volver al Inicio
       </a>
     </div>
-  </form>
 
-    <!-- Botón para crear usuario -->
-  <div class="d-grid gap-2 d-md-flex justify-content-md-center mt-2" style="max-width: 400px; width: 100%;" >
-    <div class="d-flex align-items-center">
-      <p class="mb-2">¿Ya tienes cuenta?</p>
+    <!-- FILA 2: ¿Ya tienes cuenta? / Inicia Sesión -->
+    <div class="d-flex gap-3 mt-3">
+
+      <!-- Botón estilo etiqueta -->
+      <div class="btn btn-outline-secondary flex-fill d-flex justify-content-center align-items-center">
+        ¿Ya tienes cuenta?
+      </div>
+
+      <a href="{% url 'login' %}" class="btn btn-success flex-fill d-flex justify-content-center align-items-center gap-2">
+        <img src="{% static 'img/gato-rosa2.png' %}" style="height:30px">
+        Inicia Sesión
+      </a>
+
     </div>
-    <a href="{% url 'login' %}" class="btn btn-success">
-      Inicia Sesión 
-      <img src="{% static 'img/gato-rosa2.png' %}" style="height:40px">
-    </a>
 
-  </div>
+  </form>
 
 </div>
 
