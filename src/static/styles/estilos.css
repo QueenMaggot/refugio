@@ -34,21 +34,173 @@
 }
 
 
+/*------------------------------------------------------------------------*/
+:root {
+  --color-primary: #F8BBD0;   /* Rosa suave */
+  --color-secondary: #A8E6CF; /* Verde menta */
+  --color-terciario: #E6175D; /*ROSA FUERTEEE*/
+  --color-accent: #FF8A80;    /* Coral pastel */
+  --color-bg: #BBEFF8;        /* Fondo crema */
+  --color-text: #4E4E4E;      /* Gris cálido */
+  --color-muted: #B39DDB;     /* Lavanda */
+}
+
+body {
+  background-color: var(--color-bg);
+  color: var(--color-text);
+  font-family: 'Segoe UI', Roboto, sans-serif;
+}
+
+h1, h2, h3 {
+  color: var(--color-terciario);
+}
+
+.btn-primary {
+  background-color: var(--color-primary);
+  border-color: var(--color-primary);
+  color: var(--color-text);
+}
+
+.btn-success {
+  background-color: var(--color-secondary);
+  border-color: var(--color-secondary);
+  color: var(--color-text);
+}
+
+.btn-danger {
+  background-color: var(--color-accent);
+  border-color: var(--color-accent);
+  color: white;
+}
+
+form {
+  background-color: var(--color-bg);
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+
+form input, form select, form textarea {
+  border: 1px solid var(--color-muted);
+  border-radius: 6px;
+  padding: 8px;
+  width: 100%;
+  background-color: #ffffff;
+}
+
+form input:focus, form select:focus, form textarea:focus {
+  border-color: var(--color-primary);
+  box-shadow: 0 0 5px var(--color-primary);
+  outline: none;
+}
+
+.card {
+  border: none;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+  background-color: #ffffff;
+  transition: transform 0.2s ease-in-out;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+}
+
+.card-title {
+  color: var(--color-primary);
+  font-weight: bold;
+}
+
+.card-text {
+  color: var(--color-text);
+}
+
+
+/* ===== GRID ===== */
+.container {
+  max-width: 1200px;
+}
+
+.row {
+  margin-top: 20px;
+}
+
+.col-md-4 {
+  display: flex;
+}
+
+.col-md-4 .card {
+  flex: 1;
+}
+
+
+/* ===== NAVBAR ===== */
+.navbar {
+  background-color: var(--color-primary) !important; /* Rosa suave */
+  border-bottom: 3px solid var(--color-secondary);   /* Verde menta */
+}
+
+.navbar-brand {
+  color: var(--color-text) !important;
+  font-weight: bold;
+  font-size: 1.2rem;
+}
+
+.navbar-brand i {
+  color: var(--color-accent); /* Coral pastel para íconos */
+}
+
+.navbar-nav .nav-link {
+  color: var(--color-text) !important;
+  font-weight: 500;
+  transition: color 0.3s ease;
+}
+
+.navbar-nav .nav-link:hover,
+.navbar-nav .nav-link.active {
+  color: var(--color-accent) !important; /* Coral pastel al pasar o activo */
+}
+
+.navbar-toggler {
+  border-color: var(--color-muted); /* Lavanda */
+}
+
+.navbar-toggler-icon {
+  background-image: none;
+}
+
+.navbar-toggler-icon::before {
+  content: "\2630"; /* ícono hamburguesa */
+  font-size: 1.2rem;
+  color: var(--color-text);
+}
+
+
+/* ===== FOOTER ===== */
+footer {
+  background-color: var(--color-secondary); /* Verde menta */
+  color: var(--color-text);
+  padding: 20px 0;
+  border-top: 4px solid var(--color-primary); /* Rosa suave */
+}
+
 footer a {
+  color: var(--color-text);
+  transition: color 0.3s ease;
   text-decoration: none !important; /* quita subrayado */
 }
+
 footer a:hover {
-  text-decoration: none !important; /* evita que aparezca al pasar el mouse */
+  color: var(--color-accent); /* Coral pastel al pasar */
 }
 
-footer a img {
-  text-decoration: none;
+footer img {
+  vertical-align: middle;
+  margin-right: 5px;
 }
 
-
-/* Hace que el textarea de descripción sea más compacto */
-.form-style-3 textarea.form-control {
-  height: auto;
-  min-height: 60px; /* ajusta este valor si quieres más o menos alto */
-  resize: vertical; /* permite al usuario agrandarlo si quiere */
+footer p {
+  color: var(--color-terciario);
+  margin: 5px 0;
+  font-size: 0.9rem;
 }

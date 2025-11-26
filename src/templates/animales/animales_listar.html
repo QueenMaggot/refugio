@@ -3,132 +3,176 @@
 {% load static %}
 {% block contenedor %} 
 
-
 <div class="container mt-4">
+<div class="test-rojo">TEST</div>
+  <!-- Título + botón agregar -->
   <div class="d-flex justify-content-between align-items-center mb-4">
-    <h2>Listado de Animales</h2>
+    <h2 class="mb-0">Listado de Animales</h2>
     {% if perms.animales.add_animal %}
-      <a href="{% url 'animales:animal_create' %}" class="btn btn-success me-2">
-        Agregar Animal <img src = "{% static 'img/agregar.png' %}" style= "height: 40px"> </img>
+      <a href="{% url 'animales:animal_create' %}" class="btn btn-success d-flex align-items-center gap-2">
+        <img src="{% static 'img/agregar.png' %}" style="height:28px" alt="Agregar">
+        <span>Agregar Animal</span>
       </a>
     {% endif %}
   </div>
 
-<!-- FILTRADO  -->
-<form method="get" class="mb-4">
-  <div class="row">
-    <!-- Especie -->
-    <div class="col-md-3 mb-3">
-      <label>Especie:</label>
-      {{ filter.form.especie }}
+  <!-- FILTROS EN CARD -->
+  <div class="card shadow-sm mb-4">
+    <div class="card-body">
+      <form method="get">
+        <div class="row g-3">
+          <!-- Especie -->
+          <div class="col-md-3">
+            <label class="form-label mb-1">Especie</label>
+            {{ filter.form.especie }}
+          </div>
+
+          <!-- Sexo -->
+          <div class="col-md-3">
+            <label class="form-label mb-1 d-block">Sexo</label>
+            {% for radio in filter.form.sexo %}
+              <div class="form-check form-check-inline">
+                {{ radio.tag }}
+                {% if radio.choice_label == "Macho" %}
+                  <label class="form-check-label ms-1">
+                    Macho
+                    <img src="{% static 'img/paw-azul.png' %}" style="height:18px" alt="Macho">
+                  </label>
+                {% elif radio.choice_label == "Hembra" %}
+                  <label class="form-check-label ms-1">
+                    Hembra
+                    <img src="{% static 'img/paw-rosa.png' %}" style="height:18px" alt="Hembra">
+                  </label>
+                {% else %}
+                  <label class="form-check-label ms-1">
+                    {{ radio.choice_label }}
+                  </label>
+                {% endif %}
+              </div>
+            {% endfor %}
+          </div>
+
+          <!-- Etapa de vida -->
+          <div class="col-md-3">
+            <label class="form-label mb-1">{{ filter.form.etapa.label }}</label>
+            {{ filter.form.etapa }}
+          </div>
+
+          <!-- Botones -->
+          <div class="col-md-3 d-flex align-items-end justify-content-end gap-2">
+            <button type="submit" class="btn btn-primary d-flex align-items-center gap-2">
+              <img src="{% static 'img/gato-lupa.png' %}" style="height:28px" alt="Filtrar">
+              <span>Filtrar</span>
+            </button>
+            <a href="{% url 'animales:animal_list' %}" class="btn btn-outline-secondary d-flex align-items-center gap-2">
+              <img src="{% static 'img/gato-delete.png' %}" style="height:24px" alt="Limpiar">
+              <span>Limpiar</span>
+            </a>
+          </div>
+        </div>
+      </form>
     </div>
-    
-  <div class="col-md-3 mb-3">
-  <label>Sexo:</label>
-  {% for radio in filter.form.sexo %}
-    <div class="form-check">
-      {{ radio.tag }}
-      {% if radio.choice_label == "Macho" %} Macho
-        <img src="{%static "img/paw-azul.png" %}" style= "height:20px"> 
-      {% elif radio.choice_label == "Hembra" %} Hembra
-        <img src="{%static "img/paw-rosa.png" %}" style= "height:20px">
-      {% endif %}
-    </div>
-  {% endfor %}
   </div>
 
-    
-    <!-- Adoptado -->
-    <div class="col-md-3 mb-3">
-      <label>Adoptado:</label>
-      {{ filter.form.adoptado }}
-    </div>
-
-      
-    <!-- Etapa de vida -->
-    <div class="col-md-3">
-      {{ filter.form.etapa.label_tag }}
-      {{ filter.form.etapa }}
-    </div>
-
-    
-    <!-- Botones -->
-    <div class="col-md-3 mb-3">
-      <button type="submit" class="btn btn-primary">Filtrar
-        <img src ="{% static 'img/gato-lupa.png' %}"  style="height:40px">  
-      </button>
-      <a href="{% url 'animales:animal_list' %}" class="btn btn-secondary">Limpiar
-        <img src ="{% static 'img/gato-delete.png' %}"  style="height:40px">
-      </a>
-    </div>
-  </div>
-</form>
-<!-- FIN FILTRADO -->
-
-
-<div class="container">
+  <!-- GRID DE ANIMALES -->
   <div class="row">
     {% for animal in page_obj %}
       <div class="col-md-4 mb-4">
-        <div class="card text-center">
+        <div class="card h-100">
+
+          <!-- Foto -->
           {% if animal.foto %}
-            <img src="{{ animal.foto.url }}" class="card-img-top" alt="{{ animal.nombre }}" style="height: 200px; width: 100%; object-fit: contain; object-position: center; background-color: #f8f9fa;">
-            
-            <!--style="height:200px; object-fit:cover;">-->
-          {% else %} <!-- SIN FOTO -->
-            <div class="bg-light d-flex align-items-center justify-content-center" style="height: 200px;">
+            <img 
+              src="{{ animal.foto.url }}" 
+              class="card-img-top"
+              alt="{{ animal.nombre }}"
+              style="height: 220px; width: 100%; object-fit: contain; object-position: center; background-color: #f8f9fa;">
+          {% else %}
+            <div class="bg-light d-flex align-items-center justify-content-center" style="height: 220px;">
               <i class="fas fa-paw fa-3x text-muted"></i>
             </div>
           {% endif %}
-          <div class="card-body">
-            <h5 class="card-title">{{ animal.nombre }} 
-              {% if animal.sexo == 'H' %} <!-- Si es hembra carga la img rosita-->
-              <img src= "{% static 'img/paw-rosa.png' %}" style="height:20px"> </img>
-              {% else %}  <!-- Si es macho carga la img azul -->
-              <img src= "{% static 'img/paw-azul.png' %}" style="height:20px"> </img>
+
+          <div class="card-body d-flex flex-column">
+
+            <!-- Nombre + sexo (centrado) -->
+            <div class="d-flex justify-content-center align-items-center mb-1">
+              <h5 class="card-title mb-0 d-flex align-items-center gap-2 text-center">
+                {{ animal.nombre }}
+
+                {% if animal.sexo == 'H' %}
+                  <img src="{% static 'img/paw-rosa.png' %}" style="height:22px" alt="Hembra">
+                {% else %}
+                  <img src="{% static 'img/paw-azul.png' %}" style="height:22px" alt="Macho">
+                {% endif %}
+              </h5>
+            </div>
+
+            <!-- Chips de info rápida -->
+            <div class="mb-2">
+              {% if animal.edad %}
+                <span class="badge bg-secondary me-1">Edad: {{ animal.edad }}</span>
               {% endif %}
-              Edad: {{ animal.edad }}
-            </h5>
-            <p class="card-text">{{ animal.descripcion }}</p>
-  
-            <!--{% if perms.animales.view_animal%} {% endif %}-->
-            <a href="{% url 'animales:animal_detail' animal.id %}" class="btn btn-primary">Ver detalle
-              <img src="{%static 'img/gato-detail.png'%}" style="height:40px">
-            </a>
-            {% if perms.animales.change_animal%} 
-              <a href="{% url 'animales:animal_update' animal.id %}" class="btn btn-warning">Editar
-                <img src="{%static 'img/gato-edicion.png'%}" style="height:40px">
+              {% if animal.especie %}
+                <span class="badge bg-light text-dark border me-1">{{ animal.get_especie_display }}</span>
+              {% endif %}
+            </div>
+
+            <!-- Descripción -->
+            <p class="card-text small text-muted">
+              {{ animal.descripcion|default:"Sin descripción."|truncatewords:22 }}
+            </p>
+
+            <!-- Botones -->
+            <div class="mt-auto d-flex flex-wrap justify-content-center gap-2">
+              <a href="{% url 'animales:animal_detail' animal.id %}" class="btn btn-primary btn-sm d-flex align-items-center gap-1">
+                <img src="{% static 'img/gato-detail.png' %}" style="height:24px" alt="Ver detalle">
+                <span>Ver detalle</span>
               </a>
-            {% endif %}
-            
+
+              {% if perms.animales.change_animal %}
+                <a href="{% url 'animales:animal_update' animal.id %}" class="btn btn-success btn-sm d-flex align-items-center gap-1">
+                  <img src="{% static 'img/gato-edicion.png' %}" style="height:24px" alt="Editar">
+                  <span>Editar</span>
+                </a>
+              {% endif %}
+            </div>
 
           </div>
         </div>
       </div>
+    {% empty %}
+      <div class="col-12 text-center text-muted">
+        <p>No se encontraron animales con los filtros seleccionados.</p>
+      </div>
     {% endfor %}
   </div>
+
+  <!-- Paginación (preserva filtros) -->
+  <nav aria-label="Page navigation">
+    <ul class="pagination justify-content-center mt-3">
+      {% if page_obj.has_previous %}
+        <li class="page-item">
+          <a class="page-link" href="?page={{ page_obj.previous_page_number }}{% for k, v in request.GET.items %}{% if k != 'page' %}&{{ k }}={{ v }}{% endif %}{% endfor %}">
+            Anterior
+          </a>
+        </li>
+      {% endif %}
+
+      <li class="page-item active">
+        <span class="page-link">{{ page_obj.number }}</span>
+      </li>
+
+      {% if page_obj.has_next %}
+        <li class="page-item">
+          <a class="page-link" href="?page={{ page_obj.next_page_number }}{% for k, v in request.GET.items %}{% if k != 'page' %}&{{ k }}={{ v }}{% endif %}{% endfor %}">
+            Siguiente
+          </a>
+        </li>
+      {% endif %}
+    </ul>
+  </nav>
+
 </div>
-
-
-<!-- Paginación (actualizada para preservar filtros) -->
-<nav aria-label="Page navigation">
-  <ul class="pagination justify-content-center">
-    {% if page_obj.has_previous %}
-      <li class="page-item">
-        <a class="page-link" href="?page={{ page_obj.previous_page_number }}{% for k, v in request.GET.items %}{% if k != 'page' %}&{{ k }}={{ v }}{% endif %}{% endfor %}">Anterior</a>
-      </li>
-    {% endif %}
-
-    <li class="page-item active">
-      <span class="page-link">{{ page_obj.number }}</span>
-    </li>
-
-    {% if page_obj.has_next %}
-      <li class="page-item">
-        <a class="page-link" href="?page={{ page_obj.next_page_number }}{% for k, v in request.GET.items %}{% if k != 'page' %}&{{ k }}={{ v }}{% endif %}{% endfor %}">Siguiente</a>
-      </li>
-    {% endif %}
-  </ul>
-</nav>
 
 {% endblock contenedor %}
