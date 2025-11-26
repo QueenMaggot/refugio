@@ -35,7 +35,6 @@ class AnimalCreateView(PermissionRequiredMixin,LoginRequiredMixin, CreateView):
     model = Animal
     template_name = 'animales/animal_form.html'
     form_class = AnimalForm
-    #fields = ['nombre','especie','descripcion','sexo','foto','fecha_nacimiento','refugio', 'adoptado']
     success_url = '/animales/listado/'
     permission_required = 'animales.add_animal'
 

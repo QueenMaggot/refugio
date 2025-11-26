@@ -4,13 +4,25 @@ from django.contrib.auth.models import User
 from adoptantes.models import Adoptante
 
 class RegistroAdoptanteForm(forms.ModelForm):
-    password = forms.CharField(widget=forms.PasswordInput)
-    email = forms.EmailField()
+    password = forms.CharField(widget=forms.PasswordInput(attrs={'class': 'form-control'}))
+    email = forms.EmailField(widget=forms.EmailInput(attrs={'class': 'form-control'}))
 
     class Meta:
         model = Adoptante
         fields = ['dni', 'nombre', 'apellido', 'fecha_nacimiento', 'domicilio', 'telefono', 'genero']
-    
+        widgets = {
+        'fecha_nacimiento': forms.DateInput(
+            attrs={'type': 'date', 'class': 'form-control'},
+            format='%Y-%m-%d'
+        ),
+        'nombre': forms.TextInput(attrs={'class': 'form-control'}),
+        'apellido': forms.TextInput(attrs={'class': 'form-control'}),
+        'domicilio': forms.TextInput(attrs={'class': 'form-control'}),
+        'telefono': forms.NumberInput(attrs={'class': 'form-control'}),
+        'dni': forms.NumberInput(attrs={'class': 'form-control'}),
+        'genero': forms.Select(attrs={'class': 'form-control'}),  
+    }
+
     def clean_dni(self):
         #validamos que el dni sea unico
         dni = self.cleaned_data['dni']

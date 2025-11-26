@@ -37,13 +37,20 @@
   {% endfor %}
   </div>
 
-
     
     <!-- Adoptado -->
     <div class="col-md-3 mb-3">
       <label>Adoptado:</label>
       {{ filter.form.adoptado }}
     </div>
+
+      
+    <!-- Etapa de vida -->
+    <div class="col-md-3">
+      {{ filter.form.etapa.label_tag }}
+      {{ filter.form.etapa }}
+    </div>
+
     
     <!-- Botones -->
     <div class="col-md-3 mb-3">
