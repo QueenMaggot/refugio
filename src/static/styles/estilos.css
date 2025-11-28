@@ -37,12 +37,13 @@
 /*------------------------------------------------------------------------*/
 :root {
   --color-primary: #F8BBD0;   /* Rosa suave */
-  --color-secondary: #A8E6CF; /* Verde menta */
+  --color-secondary: #F8BBEF; /* Rosa pastel */
   --color-terciario: #E6175D; /*ROSA FUERTEEE*/
   --color-accent: #FF8A80;    /* Coral pastel */
-  --color-bg: #BBEFF8;        /* Fondo crema */
-  --color-text: #4E4E4E;      /* Gris cálido */
+  --color-bg: #d6bbf8;        /* Fondo crema */
+  --color-text: #4E4E4E;      /* Gris cslido */
   --color-muted: #B39DDB;     /* Lavanda */
+  --color-black: #17020A;  /* Negro */
 }
 
 body {
@@ -53,7 +54,11 @@ body {
 
 h1, h2, h3 {
   color: var(--color-terciario);
+  font-weight: bold;
+
 }
+
+/* ========= BOTONES ========== */
 
 .btn-primary {
   background-color: var(--color-primary);
@@ -67,11 +72,18 @@ h1, h2, h3 {
   color: var(--color-text);
 }
 
+.btn-success:hover {
+  background-color: var(--color-accent); /* Coral pastel */
+  border-color: var(--color-accent);
+  color: white;
+}
+
 .btn-danger {
   background-color: var(--color-accent);
   border-color: var(--color-accent);
   color: white;
 }
+/**---------------FORMMM ------------------*/
 
 form {
   background-color: var(--color-bg);
@@ -94,6 +106,7 @@ form input:focus, form select:focus, form textarea:focus {
   outline: none;
 }
 
+/**---------------CARDSSS ------------------*/
 .card {
   border: none;
   border-radius: 12px;
@@ -115,6 +128,97 @@ form input:focus, form select:focus, form textarea:focus {
   color: var(--color-text);
 }
 
+/* Card de filtros */
+.card.shadow-sm {
+  border: 1px solid var(--color-muted); /* Lavanda */
+  border-radius: 10px;
+  background-color: #fff;
+}
+
+/* Labels de filtros */
+.form-label {
+  font-weight: 600;
+  color: var(--color-text);
+}
+
+/* Radios de sexo */
+.form-check-label img {
+  margin-left: 4px;
+  vertical-align: middle;
+}
+
+/* Badges de info rápida */
+.badge.bg-secondary {
+  background-color: var(--color-primary); /* Rosa suave */
+  color: var(--color-text);
+}
+
+.badge.bg-light {
+  background-color: var(--color-secondary); /* Verde menta */
+  border: none;
+  font-weight: 500;
+}
+
+/* Card de cada animal */
+.card.h-100 {
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+  transition: transform 0.2s ease-in-out;
+}
+
+.card.h-100:hover {
+  transform: translateY(-5px);
+}
+
+/* Nombre del animal */
+.card-title {
+  color: var(--color-primary); /* Rosa suave */
+  font-weight: bold;
+}
+
+/* Descripción */
+.card-text.small {
+  color: var(--color-text);
+  font-size: 0.9rem;
+  line-height: 1.5;
+}
+
+/* Botones dentro de cada card */
+.card .btn-sm {
+  border-radius: 6px;
+  font-size: 0.85rem;
+  padding: 6px 10px;
+}
+
+.card .btn-primary {
+  background-color: var(--color-primary);
+  border-color: var(--color-primary);
+  color: var(--color-text);
+}
+
+.card .btn-primary:hover {
+  background-color: var(--color-accent);
+  border-color: var(--color-accent);
+  color: white;
+}
+
+.card .btn-success {
+  background-color: var(--color-secondary);
+  border-color: var(--color-secondary);
+  color: var(--color-text);
+}
+
+.card .btn-success:hover {
+  background-color: var(--color-accent);
+  border-color: var(--color-accent);
+  color: white;
+}
+
+/**--------------TEST XDD-----------------*/
+.test-rojo {
+  background-color: #f8bbee;
+}
+
 
 /* ===== GRID ===== */
 .container {
@@ -134,7 +238,7 @@ form input:focus, form select:focus, form textarea:focus {
 }
 
 
-/* ===== NAVBAR ===== */
+/* ============================== NAVBAR ============== */
 .navbar {
   background-color: var(--color-primary) !important; /* Rosa suave */
   border-bottom: 3px solid var(--color-secondary);   /* Verde menta */
@@ -206,38 +310,6 @@ footer p {
 }
 /*---------------SOBREESCRITO TABLAS DE BOOTSTRAP-----------*/
 
-/* ===== TABLA DE REFUGIOS ===== */
-.table {
-  background-color: var(--color-bg); /* Fondo crema */
-  color: var(--color-text);          /* Texto gris cálido */
-  border-radius: 8px;
-  overflow: hidden;
-}
-
-.table thead {
-  background-color: var(--color-primary); /* Rosa suave */
-  color: var(--color-text);
-}
-
-.table thead th {
-  font-weight: bold;
-  text-align: center;
-}
-
-.table-striped tbody tr:nth-of-type(odd) {
-  background-color: #ffffff; /* Blanco */
-}
-
-.table-striped tbody tr:nth-of-type(even) {
-  background-color: var(--color-secondary); /* Verde menta */
-}
-
-.table-hover tbody tr:hover {
-  background-color: var(--color-accent); /* Coral pastel al pasar */
-  color: white;
-  transition: background-color 0.3s ease;
-}
-
 
 /* ===== PAGINACIÓN ===== */
 .pagination .page-link {
@@ -286,3 +358,108 @@ footer p {
   background-color: var(--color-accent);
   color: white;
 }
+
+/* ===== ACORDEÓN FAQ ===== */
+.accordion-item {
+  border: 1px solid var(--color-muted);
+  border-radius: 10px;
+  margin-bottom: 12px;
+  overflow: hidden;
+  background-color: #fff;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+}
+
+.accordion-button {
+  background-color: var(--color-primary); /* Rosa suave */
+  color: var(--color-text);
+  font-weight: 600;
+  border: none;
+  box-shadow: none;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.accordion-button:not(.collapsed) {
+  background-color: var(--color-secondary); /* Verde menta */
+  color: var(--color-terciario);            /* Rosa fuerte */
+}
+
+.accordion-button:focus {
+  box-shadow: 0 0 0 0.2rem rgba(243, 182, 220, 0.4); /* Glow pastel */
+}
+
+.accordion-body {
+  background-color: var(--color-bg); /* Fondo crema */
+  color: var(--color-text);
+  line-height: 1.6;
+  font-size: 0.95rem;
+  padding: 15px 20px;
+}
+
+.accordion-body a {
+  color: var(--color-terciario); /* Rosa fuerte */
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.accordion-body a:hover {
+  color: var(--color-accent); /* Coral pastel */
+  text-decoration: underline;
+}
+
+
+/* ===== TABLA DE REFUGIOS ===== */
+
+/*================== ULTIMO INTENTO =======================*/
+
+/* ===== TABLA DE REFUGIOS ===== */
+
+/* Fondo del contenedor (opcional) */
+.tabla-refugios {
+  background-color: var(--color-bg);
+  padding: 16px;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+  margin-bottom: 24px;
+}
+
+/* Estilo base de la tabla */
+.tabla-refugios .table {
+  background-color: #fff;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+/* Encabezado: aplicar a las celdas del thead */
+.tabla-refugios .table thead th {
+  background-color: var(--color-primary) !important;
+  color: var(--color-text) !important;
+  font-weight: bold !important;
+  text-align: center !important;
+  border-color: white !important;
+}
+
+/* Filas alternadas: ¡aplicar a las CELDAS, no a las filas! */
+.tabla-refugios .table-striped > tbody > tr:nth-of-type(odd) > * {
+  background-color: #ffffff !important;
+  color: var(--color-text) !important;
+}
+
+.tabla-refugios .table-striped > tbody > tr:nth-of-type(even) > * {
+  background-color: var(--color-secondary) !important;
+  color: var(--color-text) !important;
+}
+
+/* Hover: también en las celdas */
+.tabla-refugios .table-hover > tbody > tr:hover > * {
+  background-color: var(--color-bg) !important; /*era --color-accent*/
+  color: white !important;
+}
+
+/* Alineación de celdas */
+.tabla-refugios .table td,
+.tabla-refugios .table th {
+  vertical-align: middle !important;
+  text-align: center !important;
+  border-color: rgba(0,0,0,0.05) !important;
+}
+/*================== aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa ========================*/
