@@ -4,7 +4,6 @@
 {% load static %}
 {% block contenedor %}
 
-<div class="form-style-3">
   <h2 class="text-center mb-4"> Detalle del Animal </h2>
 
   <div class="d-flex justify-content-center">
@@ -12,10 +11,13 @@
       {% if animal.foto %}
         <img src="{{ animal.foto.url }}" class="card-img-top" alt="{{ animal.nombre }}" style="height: 200px; width: 100%; object-fit: contain;">
       {% endif %}
+      
       <div class="card-body">
-        <h5 class="card-title">{{ animal.nombre }}</h5>
+        <h5 class="card-title d-flex justify-content-center">{{ animal.nombre }}</h5>
       </div>
-      <ul class="list-group list-group-flush">
+
+      <ul class="list-group list-group-crema list-group-flush">
+        <li class="list-group-item"></li>
         <li class="list-group-item">Especie: {{ animal.get_especie_display }}</li>
         <li class="list-group-item">Sexo: {{ animal.get_sexo_display }}</li>
         <li class="list-group-item">Descripción: {{ animal.descripcion }}</li>
@@ -63,6 +65,6 @@
       </div>
     </div>
   </div>
-</div>
+
 
 {% endblock contenedor %}

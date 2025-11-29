@@ -21,7 +21,7 @@
   max-width: 700px;
   margin: 40px auto;
   padding: 30px;
-  background: #f8f9fa; /* gris claro */
+  background: var(--color-crema); /* gris claro */
   border-radius: 10px;
   line-height: 1.8;
 }
@@ -45,6 +45,7 @@
   --color-muted: #B39DDB;     /* Lavanda */
   --color-black: #17020A;  /* Negro */
   --color-celeste: #6ED6F0; /* Celeste */
+  --color-crema: #F8EDFF; /*cremita*/
 }
 
 body {
@@ -87,7 +88,7 @@ h1, h2, h3 {
 /**---------------FORMMM ------------------*/
 
 form {
-  background-color: var(--color-bg);
+  background-color: var(--color-crema); /*era bg*/
   padding: 20px;
   border-radius: 10px;
   box-shadow: 0 2px 6px rgba(0,0,0,0.1);
@@ -98,7 +99,7 @@ form input, form select, form textarea {
   border-radius: 6px;
   padding: 8px;
   width: 100%;
-  background-color: #ffffff;
+  background-color: var(--color-crema); /* blanco*/
 }
 
 form input:focus, form select:focus, form textarea:focus {
@@ -112,7 +113,7 @@ form input:focus, form select:focus, form textarea:focus {
   border: none;
   border-radius: 12px;
   box-shadow: 0 4px 10px rgba(0,0,0,0.08);
-  background-color: #ffffff;
+  background-color:var(--color-crema); /* blanco --> #ffffff */
   transition: transform 0.2s ease-in-out;
 }
 
@@ -129,45 +130,6 @@ form input:focus, form select:focus, form textarea:focus {
   color: var(--color-text);
 }
 
-/* Card de filtros */
-.card.shadow-sm {
-  border: 1px solid var(--color-muted); /* Lavanda */
-  border-radius: 10px;
-  background-color: #fff;
-}
-
-/* Labels de filtros */
-.form-label {
-  font-weight: 700;
-  color: var(--color-text);
-  font-size: 18px;
-}
-
-/* Radios de sexo */
-.form-check-label img {
-  margin-left: 4px;
-  vertical-align: middle;
-}
-
-/* Badges de info rápida */
-.badge.bg-secondary {
-  background-color: var(--color-muted);/* Rosa suave */
-  color: var(--color-text);
-}
-
-.badge.bg-light {
-  background-color: var(--color-muted); /* Verde menta */
-  border: none;
-  font-weight: 500;
-}
-
-.badge-rosa{
-  background-color: var(--color-primary);
-}
-
-.badge-celeste{
-  background-color: var(--color-celeste);
-}
 
 /* Card de cada animal */
 .card.h-100 {
@@ -224,6 +186,47 @@ form input:focus, form select:focus, form textarea:focus {
   color: white;
 }
 
+/* Card de filtros */
+.card.shadow-sm {
+  border: 1px solid var(--color-muted); /* Lavanda */
+  border-radius: 10px;
+  background-color: var(--color-crema);
+}
+
+/* Labels de filtros */
+.form-label {
+  font-weight: 700;
+  color: var(--color-text);
+  font-size: 18px;
+}
+
+/* Radios de sexo */
+.form-check-label img {
+  margin-left: 4px;
+  vertical-align: middle;
+}
+
+/* Badges de info rápida */
+.badge.bg-secondary {
+  background-color: var(--color-muted);/* Rosa suave */
+  color: var(--color-text);
+}
+
+.badge.bg-light {
+  background-color: var(--color-muted); /* Verde menta */
+  border: none;
+  font-weight: 500;
+}
+
+.badge-rosa{
+  background-color: var(--color-primary);
+}
+
+.badge-celeste{
+  background-color: var(--color-celeste);
+}
+
+
 /**--------------TEST XDD-----------------*/
 .test-rojo {
   background-color: #f8bbee;
@@ -247,6 +250,13 @@ form input:focus, form select:focus, form textarea:focus {
   flex: 1;
 }
 
+/* CONTADORES DEL INICIO */
+.contador-col {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+}
 
 /* ============================== NAVBAR ============== */
 .navbar {
@@ -318,7 +328,11 @@ footer p {
   margin: 5px 0;
   font-size: 0.9rem;
 }
-/*---------------SOBREESCRITO TABLAS DE BOOTSTRAP-----------*/
+
+.list-group-crema .list-group-item {
+  background-color: var(--color-crema); /* rosa pastel */
+  color: #333;               /* texto oscuro para contraste */
+}
 
 
 /* ===== PAGINACIÓN ===== */
@@ -341,11 +355,11 @@ footer p {
 /* ===== BOTONES DE ACCIONES ===== */
 .btn-outline-primary {
   border-color: var(--color-primary);
-  color: var(--color-primary);
+  color: var(--color-text);
 }
 
 .btn-outline-primary:hover {
-  background-color: var(--color-primary);
+  background-color: var(--color-secondary);
   color: var(--color-text);
 }
 
@@ -473,3 +487,16 @@ footer p {
   border-color: rgba(0,0,0,0.05) !important;
 }
 /*================== aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa ========================*/
+
+/* Checkbox a la derecha*/
+
+.checkbox-right {
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: flex-end;
+    align-items: center;
+}
+.checkbox-right .form-check-input {
+    margin-left: 0.75rem;
+    margin-right: 0;
+}

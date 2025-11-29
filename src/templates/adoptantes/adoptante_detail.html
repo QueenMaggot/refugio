@@ -4,7 +4,7 @@
 {% load static %}
 {% block contenedor %}
 
-<div class="form-style-3">
+
   <h2 class="text-center mb-4"> Detalle del Adoptante </h2>
 
     <div class="d-flex justify-content-center">
@@ -14,7 +14,8 @@
         <h5 class="card-title">Nombre: {{adoptante.nombre}}, {{adoptante.apellido}}</h5>
       </div>
 
-      <ul class="list-group list-group-flush">
+      <ul class="list-group list-group-crema list-group-flush">
+        <li class="list-group-item"></li>
         <li class="list-group-item">Genero: {{adoptante.get_genero_display}}</li>
         <li class="list-group-item">Fecha Nacimiento: {{adoptante.fecha_nacimiento}}</li>
         <li class="list-group-item">DNI: {{adoptante.dni}} </li>
@@ -41,6 +42,5 @@
       </div>
     </div>
   </div>
-</div>
 
 {% endblock contenedor %}

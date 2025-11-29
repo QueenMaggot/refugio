@@ -1,13 +1,15 @@
 <!-- adopciones/adopcion_detail.html -->
+ <!-- DETALLE ADOPCIONES -->
+  
 {% extends 'base.html' %}
 {% block contenedor %}
 {% load static %}
 
 {% if adopcion %}
-<div class="form-style-3">
+
 <h2 class="d-flex justify-content-center">Detalle de la Adopción</h2>
 
-<div class="form-style-3 d-flex justify-content-center">
+<div class="form-style-1 flex justify-content-center">
     
     <div class="card" style="width: 22rem;">   
     <br>
@@ -32,7 +34,7 @@
 
     
     <h4><strong>Datos del Adoptante:</strong></h4>
-
+    
     <p><strong>Adoptante:</strong> {{ adopcion.adoptante }}</p>
     
     <p><strong>Edad:</strong> {{ adopcion.adoptante.edad }}</p>
@@ -62,7 +64,7 @@
     </a>
     {% endif %}
 </div>
-</div>
+
 
 {% else %}
 <p class="text-muted">No se encontró la adopción.</p>

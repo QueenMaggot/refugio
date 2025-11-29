@@ -4,14 +4,13 @@
 {% load static %}
 {% block contenedor %}
 
-<div class="form-style-3"> 
   <h2 class="text-center mb-4">Detalle del Refugio</h2>
     <br>
 
     <div class="d-flex justify-content-center">
         <div class="card" style="width: 100%; max-width: 30rem;">
 
-            <ul class="list-group list-group-flush">
+            <ul class="list-group list-group-crema list-group-flush">
                 <li class="list-group-item">Nombre: {{refugio.nombre}} </li>
                 <li class="list-group-item">Domicilio: {{refugio.domicilio}} </li>
                 <li class="list-group-item">Telefono: {{refugio.telefono}} </li>
@@ -31,6 +30,5 @@
         </div>
     </div>
     </div>
-</div>
 
 {% endblock contenedor %}

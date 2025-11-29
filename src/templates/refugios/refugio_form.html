@@ -4,7 +4,7 @@
 {% block contenedor %}
 {% load static %}
 
-<div class= "form-style-3 d-flex justify-content-center">
+<div class= "d-flex justify-content-center">
   <form method="post" class="form-style-3">
   <h2 class="titulo-grid d-flex justify-content-center"> Agregar Refugio </h2>
     <br>
@@ -14,17 +14,17 @@
     {{form.nombre.label_tag}}
     {{form.nombre.as_widget}}
     <br>
-    <br>
+
 
     {{form.domicilio.label_tag}}
     {{form.domicilio.as_widget}}
     <br>
-    <br>
+ 
 
     {{form.telefono.label_tag}}
     {{form.telefono.as_widget}}
     <br>
-    <br>
+
 
     <div>
       <a class="btn btn-primary" href="{% url 'refugios:refugio_list' %}" class="card-link">Volver al Listado

@@ -15,11 +15,11 @@
     {% endif %}
 {% endif %}
 
-<form method="post" action="{% url 'login' %}">
+<form method="post" class="form-style-1" action="{% url 'login' %}">
 {% csrf_token %}
 <table>
 <tr>
-    <td>{{ form.username.label_tag }}</td>
+    <td>DNI:</td>
     <td>{{ form.username }}</td>
 </tr>
 <tr>
@@ -35,8 +35,6 @@
 </button>
 <input type="hidden" name="next" value="{{ next }}">
 
-</form>
-
 <!-- Botón para crear usuario -->
 <div class="mt-3 d-flex align-items-center">
   <p class="mb-0 me-2">¿No tienes cuenta?</p>
@@ -45,6 +43,10 @@
     <img src="{% static 'img/agregar.png' %}" style="height:40px">
   </a>
 </div>
+
+
+</form>
+
 
 
 {% endblock contenedor %}

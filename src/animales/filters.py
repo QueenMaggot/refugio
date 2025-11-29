@@ -32,8 +32,8 @@ class AnimalFilter(django_filters.FilterSet):
     etapa = django_filters.ChoiceFilter(
         choices=ETAPAS,
         method='filtrar_por_etapa',
-        label='Etapa de vida',
-        empty_label="Todas las etapas"
+        label='Edad',
+        empty_label="Todas las edades"
     )
 
     class Meta:

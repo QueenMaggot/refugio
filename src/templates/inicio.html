@@ -5,7 +5,7 @@
 <!-- Hero principal -->
 <section class="text-center bg-light py-5">
   <h2 class="mb-4">❤ ¡Bienvenido a Proyecto Adopciones! ❤</h2>
-  <h1 class="display-4">Adoptar es dar vida (?) </h1>
+  <h1 class="display-4">Tranformá su historia, cambiá la tuya</h1>
   <p class="lead">Miles de animales esperan su hogar</p>
   <a href="{% url 'animales:animal_list' %}" class="btn btn-success btn-lg">
     Ver Animales Disponibles
@@ -15,20 +15,26 @@
 <!-- Contadores -->
 <section class="container py-5">
   <div class="row text-center">
-    <div class="col-md-4">
-      <h3 class="display-6 text-primary">{{ total_animales }}</h3>
-      <img src={% static "img/gato-triste.png" %} style="height: 40px">
-      <p> Animales esperando adopción</p>
+    <!-- Columna 1 -->
+    <div class="col-md-4 contador-col">
+        <h3 class="display-6 text-primary">{{ total_animales }}</h3>
+        <p class="mb-0">Animales esperando adopción</p>
+        <img src="{% static 'img/gato-triste.png' %}" style="height: 40px;" alt="Animales esperando">
     </div>
-    <div class="col-md-4">
-      <h3 class="display-6 text-sucess">{{ total_adopciones_aprobadas }}</h3>
-      <img src={% static "img/gato-love.png" %} style="height: 40px">
-      <p>Adopciones realizadas</p>
+
+    <!-- Columna 2 -->
+    <div class="col-md-4 contador-col">
+        <h3 class="display-6 text-success">{{ total_adopciones_aprobadas }}</h3>
+        <p class="mb-0">Adopciones realizadas</p>
+        <img src="{% static 'img/gato-love.png' %}" style="height: 40px;" alt="Adopciones realizadas">
     </div>
-    <div class="col-md-4">
-      <h3 class="display-6 text-info">{{ total_refugios }}</h3>
-      <img src={% static "img/perro-nerd.png" %} style="height: 40px">
-      <p>Refugios participantes</p>
+
+    <!-- Columna 3 -->
+   <div class="col-md-4 contador-col">
+
+        <h3 class="display-6 text-info">{{ total_refugios }}</h3>
+        <p class="mb-0">Refugios participantes</p>
+        <img src="{% static 'img/perro-nerd.png' %}" style="height: 40px;" alt="Refugios participantes">
     </div>
   </div>
 </section>

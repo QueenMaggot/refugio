@@ -4,7 +4,6 @@
 {% block contenedor %}
 {% load static %}
 
-<div class="form-style-3"> 
 
 <h2 class="text-center mb-4">Editar Animal</h2>
 <form method="post" enctype="multipart/form-data" class= "form-style-3">
@@ -12,6 +11,43 @@
 
     <!-- Renderizar los demás campos -->
     {{ form.non_field_errors }}
+
+    <div class= "mb-3 col-md-5">
+        <label for="{{ form.nombre.id_for_label }}" class="form-label">Nombre:</label>
+        {{ form.nombre }}
+    </div>
+
+    <div class= "mb-3 col-md-3">
+        <label for="{{ form.nombre.id_for_label }}" class="form-label">Especie:</label>
+        {{ form.especie }}
+    </div>
+
+    <div class= "mb-3 col-md-3">
+        <label for="{{ form.nombre.id_for_label }}" class="form-label">Sexo:</label>
+        {{ form.sexo }}
+    </div>
+
+    <div class= "mb-3 col-md-8">
+        <label for="{{ form.nombre.id_for_label }}" class="form-label">Descripción:</label>
+        {{ form.descripcion }}
+    </div>
+
+    <div class= "mb-3 col-md-5">
+        <label for="{{ form.nombre.id_for_label}}" class="form-label">Fecha de Nacimiento:</label>
+        {{form.fecha_nacimiento}}
+    </div>
+    
+    <div class="form-check mb-3 checkbox-right">
+        {{ form.adoptado}}
+        {{ form.adoptado.label_tag }}
+    </div>
+
+    <div class= "mb-3 col-md-5">
+    <label for="{{ form.nombre.id_for_label }}" class="form-label">Refugio:</label>
+    {{ form.refugio }}
+    </div>
+    <!--
+
     <p>{{ form.nombre.label_tag }} {{ form.nombre }}</p>
     <p>{{ form.especie.label_tag }} {{ form.especie }}</p>
     <p>{{ form.sexo.label_tag }} {{ form.sexo }}</p>
@@ -19,14 +55,16 @@
         {{ form.descripcion.label_tag }}
         {{ form.descripcion }}
     </p>
-    <p>{{ form.fecha_nacimiento.label_tag }} {{ form.fecha_nacimiento }}</p>
+
+   <p>{{ form.fecha_nacimiento.label_tag }} {{ form.fecha_nacimiento }}</p>
     <p>{{ form.refugio.label_tag }} {{ form.refugio }}</p>
     <p>{{ form.adoptado.label_tag }} {{ form.adoptado }}</p>
+    -->
+
     <!-- Mostrar la imagen actual -->
     {% if form.instance.foto %}
         <img src="{{ form.instance.foto.url }}" alt="{{ form.instance.nombre }}" width="150">
     {% endif %}
-
     <!-- Campo de imagen -->
     <p>{{ form.foto.label_tag }} {{ form.foto }}</p>
 
@@ -37,7 +75,6 @@
         <img src ="{% static 'img/gato-neutro2.png' %}"  style="height:40px">
     </button>
 </form>
-</div>
 
 
 {% endblock contenedor %}

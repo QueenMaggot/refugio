@@ -46,8 +46,8 @@ class AnimalDetailView(DetailView):
 
 class AnimalUpdateView(PermissionRequiredMixin,LoginRequiredMixin, UpdateView):
     model = Animal
+    form_class = AnimalForm
     template_name = 'animales/animal_list.html'
-    fields = ['nombre','especie','descripcion','refugio','foto','adoptado']
     success_url = '/animales/listado/'
     permission_required = 'animales.change_animal'
 
