@@ -44,6 +44,7 @@
   --color-text: #4E4E4E;      /* Gris cslido */
   --color-muted: #B39DDB;     /* Lavanda */
   --color-black: #17020A;  /* Negro */
+  --color-celeste: #6ED6F0; /* Celeste */
 }
 
 body {
@@ -137,8 +138,9 @@ form input:focus, form select:focus, form textarea:focus {
 
 /* Labels de filtros */
 .form-label {
-  font-weight: 600;
+  font-weight: 700;
   color: var(--color-text);
+  font-size: 18px;
 }
 
 /* Radios de sexo */
@@ -149,14 +151,22 @@ form input:focus, form select:focus, form textarea:focus {
 
 /* Badges de info rápida */
 .badge.bg-secondary {
-  background-color: var(--color-primary); /* Rosa suave */
+  background-color: var(--color-muted);/* Rosa suave */
   color: var(--color-text);
 }
 
 .badge.bg-light {
-  background-color: var(--color-secondary); /* Verde menta */
+  background-color: var(--color-muted); /* Verde menta */
   border: none;
   font-weight: 500;
+}
+
+.badge-rosa{
+  background-color: var(--color-primary);
+}
+
+.badge-celeste{
+  background-color: var(--color-celeste);
 }
 
 /* Card de cada animal */

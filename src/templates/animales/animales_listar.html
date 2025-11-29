@@ -22,13 +22,13 @@
       <form method="get">
         <div class="row g-3">
           <!-- Especie -->
-          <div class="col-md-3">
+          <div class="col-md-2">
             <label class="form-label mb-1">Especie</label>
             {{ filter.form.especie }}
           </div>
 
           <!-- Sexo -->
-          <div class="col-md-3">
+          <div class="col-md-4">
             <label class="form-label mb-1 d-block">Sexo</label>
             {% for radio in filter.form.sexo %}
               <div class="form-check form-check-inline">
@@ -53,7 +53,7 @@
           </div>
 
           <!-- Etapa de vida -->
-          <div class="col-md-3">
+          <div class="col-md-2">
             <label class="form-label mb-1">{{ filter.form.etapa.label }}</label>
             {{ filter.form.etapa }}
           </div>
@@ -98,23 +98,29 @@
             <!-- Nombre + sexo (centrado) -->
             <div class="d-flex justify-content-center align-items-center mb-1">
               <h5 class="card-title mb-0 d-flex align-items-center gap-2 text-center">
-                {{ animal.nombre }}
 
                 {% if animal.sexo == 'H' %}
+                     {{ animal.nombre }}
                   <img src="{% static 'img/paw-rosa.png' %}" style="height:22px" alt="Hembra">
                 {% else %}
+                  <span style="color:var(--color-celeste)">      {{ animal.nombre }} </span>
                   <img src="{% static 'img/paw-azul.png' %}" style="height:22px" alt="Macho">
                 {% endif %}
+
               </h5>
             </div>
 
             <!-- Chips de info rápida -->
             <div class="mb-2">
               {% if animal.edad %}
-                <span class="badge bg-secondary me-1">Edad: {{ animal.edad }}</span>
+               {% if animal.sexo == 'H' %}
+                <span class="badge badge-rosa me-1">Edad: {{ animal.edad }}</span>
+               {% else %}
+                <span class="badge badge-celeste me-1">Edad: {{ animal.edad }}</span>
+              {% endif %}  
               {% endif %}
               {% if animal.especie %}
-                <span class="badge bg-light text-dark border me-1">{{ animal.get_especie_display }}</span>
+                <span class="badge text-secondary border me-1">{{ animal.get_especie_display }}</span>
               {% endif %}
             </div>
 
