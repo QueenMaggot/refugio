@@ -60,6 +60,26 @@ h1, h2, h3 {
 
 }
 
+/* INICIO */
+.section-inicio {
+  background-color: var(--color-bg)!important;
+}
+
+.stats-box {
+  background-color:rgba(0,0,0, 0.3); /* celeste pastel con 50% opacidad */
+  border-radius: 12px; /* esquinas redondeadas */
+  padding: 20px;
+  text-align: center;
+}
+
+.stats-box p {
+  color: #fff;          /* texto blanco para contraste */
+  font-weight: 500;     /* un poco más grueso */
+  margin-top: 10px;     /* espacio respecto al número */
+}
+
+
+
 /* ========= BOTONES ========== */
 
 .btn-primary {
