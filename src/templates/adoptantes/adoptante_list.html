@@ -37,9 +37,10 @@
     </div>
 
     <div class="mb-3 col-md-6">
-      {{ form.email.label_tag }}
-      {{ form.email }}  
+      {{form.email.label_tag}}
+      {{form.email}}
     </div>
+
 
     <div class="mb-3 col-md-6">
       {{ form.telefono.label_tag }}
@@ -52,9 +53,9 @@
     </div>
 
     <div class="form-check mb-3 checkbox-right">
-      {{ form.activo }}  
-      {{ form.activo.label_tag }}
-      </div>
+    {{ form.activo }}
+    <label class="form-check-label" for="{{ form.activo.id_for_label }}">Activo</label>
+    </div>
 
   </div>
 

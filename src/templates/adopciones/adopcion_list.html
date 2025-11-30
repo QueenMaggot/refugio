@@ -17,9 +17,14 @@
     <p><strong>Adoptante:</strong> {{ adopcion.adoptante }}</p>
     
     <!-- Campos EDITABLES -->
-    <p>{{ form.fecha_adopcion.label_tag }} {{ form.fecha_adopcion}}</p>
-    <p>{{ form.estado.label_tag }} {{ form.estado }}</p>
+    
+    <div class="col-md-5">
+        <p>{{ form.fecha_adopcion.label_tag }} {{ form.fecha_adopcion}}</p>
+    </div>
 
+    <div class="col-md-5">
+        <p>{{ form.estado.label_tag }} {{ form.estado }}</p>
+    </div>
     <a class="btn btn-primary" href="{% url 'adopciones:adopcion_list' %}" class="card-link">Volver al Listado
         <img src ="{% static 'img/gato-azul.png' %}"  style="height:40px">
     </a>

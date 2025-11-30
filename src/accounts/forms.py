@@ -9,7 +9,7 @@ class RegistroAdoptanteForm(forms.ModelForm):
 
     class Meta:
         model = Adoptante
-        fields = ['dni', 'nombre', 'apellido', 'fecha_nacimiento', 'domicilio', 'telefono', 'genero']
+        fields = ['dni', 'nombre', 'apellido', 'fecha_nacimiento', 'domicilio', 'telefono', 'genero','email']
         widgets = {
         'fecha_nacimiento': forms.DateInput(
             attrs={'type': 'date', 'class': 'form-control'},
