@@ -129,7 +129,7 @@ USE_TZ = True
 STATIC_URL = '/static/'
 #STATICFILES_DIRS = [ BASE_DIR / 'static',]
 STATIC_ROOT = BASE_DIR / 'staticfiles'
-STATICFILES_DIRS = [BASE_DIR / 'src' / 'static',]
+STATICFILES_DIRS = [BASE_DIR  / 'static',]
 
 #BASE_DIR / 'staticfiles'
 #import os #Para las imagenes
