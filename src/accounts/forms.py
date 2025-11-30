@@ -6,6 +6,10 @@ from adoptantes.models import Adoptante
 class RegistroAdoptanteForm(forms.ModelForm):
     password = forms.CharField(widget=forms.PasswordInput(attrs={'class': 'form-control'}))
     email = forms.EmailField(widget=forms.EmailInput(attrs={'class': 'form-control'}))
+    error_messages={
+    'ERROR': 'Por favor ingrese un email válido (ejemplo: usuario@dominio.com).'
+}
+
 
     class Meta:
         model = Adoptante

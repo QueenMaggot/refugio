@@ -33,7 +33,8 @@ class AdoptanteForm(forms.ModelForm):
         # Si el adoptante ya tiene user, mostrar su email
         if self.instance and self.instance.user:
             self.fields['email'].initial = self.instance.user.email
-
+    
+    # Guardamos email en user asociado
     def save(self, commit=True):
         adoptante = super().save(commit=False)
         email = self.cleaned_data.get('email')

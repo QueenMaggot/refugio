@@ -4,6 +4,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.mixins import PermissionRequiredMixin
 from .models import Adoptante
 from .forms import AdoptanteForm
+
 # Create your views here.
 
 class AdoptanteListView(PermissionRequiredMixin,LoginRequiredMixin, ListView):
@@ -17,7 +18,8 @@ class AdoptanteCreateView(PermissionRequiredMixin,LoginRequiredMixin, CreateView
     form_class= AdoptanteForm
     template_name = 'adoptantes/adoptante_form.html'
     success_url = '/adoptantes/listado/'
-    permission_required = 'adoptantes.add_adoptante'
+    #permission_required = 'adoptantes.add_adoptante'
+    permission_required = 'accounts.registro_adoptante' # probando d:, no funciona
 
 class AdoptanteDetailView(PermissionRequiredMixin,LoginRequiredMixin, DetailView):
     model = Adoptante
