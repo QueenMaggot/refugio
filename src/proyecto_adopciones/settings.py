@@ -48,6 +48,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'django_filters',
     #Aplicaciones propias
+    'proyecto_adopciones'
     'animales',
     'adoptantes',
     'refugios',
