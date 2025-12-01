@@ -13,4 +13,7 @@ from django.core.wsgi import get_wsgi_application
 
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'proyecto_adopciones.settings')
 
+from .initial_data import load_initial_data_if_needed
+load_initial_data_if_needed()
+
 application = get_wsgi_application()
