@@ -1,4 +1,6 @@
 asgiref==3.9.1
+certifi==2025.11.12
+cloudinary==1.44.1
 dj-database-url==3.0.1
 Django==5.2.6
 django-filter==25.2
@@ -11,4 +13,5 @@ python-dateutil==2.9.0.post0
 six==1.17.0
 sqlparse==0.5.3
 tzdata==2025.2
+urllib3==2.5.0
 whitenoise==6.11.0

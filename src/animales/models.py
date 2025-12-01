@@ -1,6 +1,7 @@
 from django.db import models
 from refugios.models import Refugio
 from datetime import date
+from cloudinary.models import CloudinaryField
 # Create your models here.
 
 class Animal(models.Model):
@@ -26,7 +27,8 @@ class Animal(models.Model):
     adoptado = models.BooleanField(default=False)
     creado = models.DateTimeField(auto_now_add=True) # Campos ocultos que maneja django Cuando agrego nuevo, el django solo agrega la fecha
     modificado = models.DateTimeField(auto_now=True) # Al modificar guardamos la fecha y hs
-    foto = models.ImageField(upload_to='animales/', blank=True, null=True)
+    #foto = models.ImageField(upload_to='animales/', blank=True, null=True)
+    foto = CloudinaryField('image', blank=True, null= True)
 
     def __str__(self):
         return f'{self.nombre}, {self.especie},{self.descripcion},{self.sexo}, {self.foto}, {self.refugio}'
