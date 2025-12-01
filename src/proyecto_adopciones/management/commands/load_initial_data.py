@@ -2,7 +2,7 @@
 from django.core.management.base import BaseCommand
 from django.core.management import call_command
 from django.db import connection
-import os
+from pathlib import Path
 
 class Command(BaseCommand):
     help = "Carga backup_utf8.json si la base de datos está vacía"
@@ -14,16 +14,16 @@ class Command(BaseCommand):
             count = cursor.fetchone()[0]
 
         if count == 0:
-            # backup_utf8.json está en src/
-            fixture_path = os.path.join(
-                os.path.dirname(os.path.dirname(os.path.dirname(__file__))),
-                'backup_utf8.json'
-            )
-            if os.path.exists(fixture_path):
-                self.stdout.write("🔍 Cargando datos iniciales desde backup_utf8.json...")
-                call_command('loaddata', fixture_path, verbosity=2)
-                self.stdout.write(self.style.SUCCESS("✅ Datos cargados con éxito."))
+            # Ruta: src/backup_utf8.json
+            current_file = Path(__file__).resolve()
+            src_dir = current_file.parent.parent.parent.parent  # sube 4 niveles
+            fixture_path = src_dir / "backup_utf8.json"
+
+            if fixture_path.exists():
+                self.stdout.write(f"🔍 Cargando desde: {fixture_path}")
+                call_command('loaddata', str(fixture_path), verbosity=2)
+                self.stdout.write(self.style.SUCCESS("✅ Datos cargados."))
             else:
-                self.stdout.write(self.style.ERROR(f"❌ Archivo no encontrado: {fixture_path}"))
+                self.stdout.write(self.style.ERROR(f"❌ Fixture no encontrado: {fixture_path}"))
         else:
-            self.stdout.write("ℹ️  La base ya tiene datos. No se carga el fixture.")
+            self.stdout.write("ℹ️  La base ya tiene datos.")
