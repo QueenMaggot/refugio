@@ -69,6 +69,8 @@ INSTALLED_APPS = [
     'api1',
     # Terceros
     'rest_framework',
+    'cloudinary',
+    'cloudinary_storage',
 ]
 
 MIDDLEWARE = [
