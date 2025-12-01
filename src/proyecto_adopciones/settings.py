@@ -179,3 +179,7 @@ CLOUDINARY_STORAGE = {
 }
 
 DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
+
+# Al final de settings.py
+if 'postgres' not in DATABASES['default']['ENGINE']:
+    raise Exception("¡ERROR! No estás usando PostgreSQL. Estás usando: " + DATABASES['default']['ENGINE'])
