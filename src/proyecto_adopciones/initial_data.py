@@ -12,13 +12,18 @@ def load_initial_data_if_needed():
         with connection.cursor() as cursor:
             cursor.execute("SELECT COUNT(*) FROM auth_user")
             user_count = cursor.fetchone()[0]
+        
+        print(f"🔍 auth_user count: {user_count}")  # Esto aparecerá en los logs de Render
+
         if user_count == 0:
             fixture_path = os.path.join(os.path.dirname(__file__), '..', 'backup_utf8.json')
+            print(f"📂 Ruta del fixture: {os.path.abspath(fixture_path)}")
+
             if os.path.exists(fixture_path):
                 print("🔍 Base de datos vacía. Cargando datos iniciales...")
                 call_command('loaddata', fixture_path, verbosity=2)
             else:
-                print("⚠️  Fixture no encontrado:", fixture_path)
+                print("❌ ERROR: backup_utf8.json NO ENCONTRADO", fixture_path)
         else:
             print("✅ Base de datos ya contiene datos. No se carga fixture.")
     except Exception as e:
