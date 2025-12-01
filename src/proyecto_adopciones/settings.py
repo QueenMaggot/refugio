@@ -21,6 +21,15 @@ import cloudinary.api
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
+# Database
+# https://docs.djangoproject.com/en/5.2/ref/settings/#databases
+
+DATABASES = {
+    'default': dj_database_url.config(
+        default=os.environ.get('DATABASE_URL', 'sqlite:///db.sqlite3')
+    )
+}
+
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.2/howto/deployment/checklist/
@@ -94,15 +103,6 @@ TEMPLATES = [
 WSGI_APPLICATION = 'proyecto_adopciones.wsgi.application'
 
 
-# Database
-# https://docs.djangoproject.com/en/5.2/ref/settings/#databases
-
-DATABASES = {
-    'default': dj_database_url.config(
-        default=os.environ.get('DATABASE_URL', 'sqlite:///db.sqlite3')
-    )
-}
-
 
 # Password validation
 # https://docs.djangoproject.com/en/5.2/ref/settings/#auth-password-validators
@@ -172,14 +172,14 @@ REST_FRAMEWORK = {
 
 CLOUDINARY_URL = os.environ.get('CLOUDINARY_URL')
 
-CLOUDINARY_STORAGE = {
-    'CLOUD_NAME': os.getenv('CLOUDINARY_CLOUD_NAME'),
-    'API_KEY': os.getenv('CLOUDINARY_API_KEY'),
-    'API_SECRET': os.getenv('CLOUDINARY_API_SECRET')
-}
+#CLOUDINARY_STORAGE = {
+#    'CLOUD_NAME': os.getenv('CLOUDINARY_CLOUD_NAME'),
+#    'API_KEY': os.getenv('CLOUDINARY_API_KEY'),
+#    'API_SECRET': os.getenv('CLOUDINARY_API_SECRET')
+#}
 
 DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
 
 # Al final de settings.py
-if 'postgres' not in DATABASES['default']['ENGINE']:
-    raise Exception("¡ERROR! No estás usando PostgreSQL. Estás usando: " + DATABASES['default']['ENGINE'])
+#if 'postgres' not in DATABASES['default']['ENGINE']:
+#    raise Exception("¡ERROR! No estás usando PostgreSQL. Estás usando: " + DATABASES['default']['ENGINE'])
