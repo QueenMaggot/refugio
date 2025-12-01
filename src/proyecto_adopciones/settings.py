@@ -185,3 +185,9 @@ DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
 # Al final de settings.py
 #if 'postgres' not in DATABASES['default']['ENGINE']:
 #    raise Exception("¡ERROR! No estás usando PostgreSQL. Estás usando: " + DATABASES['default']['ENGINE'])
+
+cloudinary_url = os.environ.get('CLOUDINARY_URL')
+if cloudinary_url:
+    cloudinary.config(cloudinary_url=cloudinary_url)
+else:
+    raise ValueError("Falta CLOUDINARY_URL en las variables de entorno")
