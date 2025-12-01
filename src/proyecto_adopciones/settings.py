@@ -12,9 +12,7 @@ https://docs.djangoproject.com/en/5.2/ref/settings/
 
 from pathlib import Path
 import os
-import cloudinary
-import cloudinary.uploader
-from cloudinary.utils import cloudinary_url
+
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -29,8 +27,13 @@ SECRET_KEY = 'django-insecure-fa0aeu!ek^!7urvgoh4a=$iph+h!t!ma&vm2j5i-lt06#==f+9
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = os.environ.get("ALLOWED_HOSTS", "").split(",")
-
+# Configuración de ALLOWED_HOSTS
+if os.getenv('RENDER'):
+    # En Render, usa la variable de entorno (o directamente el dominio)
+    ALLOWED_HOSTS = os.environ.get("ALLOWED_HOSTS", ".onrender.com").split(",")
+else:
+    # En desarrollo local
+    ALLOWED_HOSTS = ['localhost', '127.0.0.1']
 
 # Application definition
 
